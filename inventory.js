@@ -1,20 +1,65 @@
-// inventory.js
+// This file will be created to model our inventory in a way that 
+// we don't have to create a super long url, like we did in the labs.
 
-// Function to add an item
-function addItem(item) {
+// Function to add an item to the inventory.
+function addItem(item, quantity) {
+  // With the localStorage.getItem function we read the inventory string stored in the brower.
+  // The JSON.parse is to convert it to a JavaScript object and, the "|| {}" part is 
+  // to create a new object in case this "inventory" object doesn't exists already.
   let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
-  if (inventory[item]) {
-    inventory[item]++;
+  if (inventory[item]) { // If item exists, increase.
+    inventory[item] += quantity;
   } else {
-    inventory[item] = 1;
+    inventory[item] = quantity; // If it doesn't exist, we add it.
   }
+
+  // Here, with JSON.stringify we convert the inventory back to string and, with 
+  // localStorage.setItem, we save it back in the browser permanently.
   localStorage.setItem("inventory", JSON.stringify(inventory));
-  renderInventory(); // optional: update display immediately
+  renderInventory(); // Here we just update the inventory's display in the screen.
 }
 
-// Function to render inventory in container
-function renderInventory() {
+// This function will be to remove an amount of items from the inventory.
+// For example, this will be used to show how our characters loose life when they get attacked.
+function removeItem(item, quantity) {
   let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
+  if(inventory[item] <= quantity) {
+    inventory[item] = 0;
+  } else {
+    inventory[item] -= quantity;
+  }
+
+  // Update the inventory's content and re-render it.
+  localStorage.setItem("inventory", JSON.stringify(inventory));
+  renderInventory();
+}
+
+// We are going to create a function to check the amount one item class in the inventory.
+function amountItem(item) {
+  let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
+
+  return inventory[item];
+}
+
+// Now, we are going to create a function to empty the inventory, so that it is 
+// reseted whenever the character dies.
+function emptyInventory() {
+  localStorage.removeItem("inventory");
+}
+
+// Function to remove inventory and head back to index.html, like if the game has just started.
+function gameOver() {
+  emptyInventory();
+  window.location.href = "index.html";
+}
+
+// Function to render inventory in the designed container.
+function renderInventory() {
+
+  // Get the inventory string and convert it into a js object, as before.
+  let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
+
+  // Icons used for the different objects that can be obtained.
   const itemIcons = {
     hp: "/assets/hp.png",
     firstSword: "assets/weapons/firstSword.avif",
@@ -24,28 +69,37 @@ function renderInventory() {
     medallion: "/assets/medallion.png"
   };
 
+  // Used to find the "div" in HTML where we want to render out inventory.
   let container = document.getElementById("inventory");
+
+  // If a place to render the inventory hasn't been asigned, then we return, not rendering anything,
   if (!container) return;
+
+  // Used to clear the inventory (div container) before rendering, so items don't duplicate.
   container.innerHTML = "";
 
+  // If the inventory is empty, we just print a new paragraph saying it's empty.
   if (Object.keys(inventory).length === 0) {
-    container.innerHTML = "<p>(empty)</p>";
+    container.innerHTML = "<p>(empty - no items at the moment)</p>";
   } else {
+    // If there is any item, we just render it.
     for (let item in inventory) {
+      // We create the div block that will contain the item slot.
       let slot = document.createElement("div");
-      slot.className = "slot";
+      slot.className = "slot"; // CSS stiling.
 
-      let img = document.createElement("img");
-      img.src = itemIcons[item];
-      img.alt = item;
-      slot.appendChild(img);
+      let img = document.createElement("img"); // Create the item's "img" block.
+      img.src = itemIcons[item]; // Image source.
+      img.alt = item; // Image name.
+      slot.appendChild(img); // Append image in slot.
 
+      // Creates a "div" block to show how many units of this item we have.
       let count = document.createElement("div");
       count.className = "count";
       count.textContent = inventory[item];
-      slot.appendChild(count);
+      slot.appendChild(count); // Append count into slot.
 
-      container.appendChild(slot);
+      container.appendChild(slot); // Append slot in container (inventory bar) .
     }
   }
 }

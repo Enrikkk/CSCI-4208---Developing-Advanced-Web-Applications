@@ -30,11 +30,15 @@
         <div id="inventory" class="inventory"></div>
         <script src="inventory.js" defer> </script>
         <script> 
-            addItem("firstSword"); 
-            addItem("hp");
-            addItem("hp");
-            addItem("hp");
-            addItem("hp");
+            document.addEventListener("DOMContentLoaded", () => {
+                if(amountItem(firstSword) == 0) {
+                    addItem("firstSword");
+                    addItem("hp");
+                    addItem("hp");
+                    addItem("hp");
+                    addItem("hp");
+                }
+            });
         </script>
 
     </body>
