@@ -9,17 +9,17 @@ body { font-family: sans-serif; }
 .slot {
     width: 80px;
     height: 80px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #444;
-    margin: 2px;
+    outline-width: 4px;
+    outline-style: solid;
+    outline-color: #444;
+    margin: 6px;
     display: flex;
     justify-content: center;
 }
 
 .slot img {
-    width: 10%;
-    height: 10%;
+    width: 100%;
+    height: 100%;
 }
 
 .count {

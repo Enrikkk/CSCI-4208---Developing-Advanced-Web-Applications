@@ -4,7 +4,7 @@
     <head>
         <title> Triple Adventure </title>
         <link rel="icon" href="assets/weapons/cimitar.png" />
-         <link rel="stylesheet" href="style/styles.css" >
+        <link rel="stylesheet" href="styles/styles.css" >
     </head>
 
     <body>
@@ -29,15 +29,11 @@
         <h3> Inventory </h3>
         <div id="inventory" class="inventory"></div>
         <script src="inventory.js" defer> </script>
-        <script> 
+        <script> // We use "addEventListener" so that this script doesn't take place
+                 // before the page is fully loaded.
             document.addEventListener("DOMContentLoaded", () => {
-                if(amountItem(firstSword) == 0) {
-                    addItem("firstSword");
-                    addItem("hp");
-                    addItem("hp");
-                    addItem("hp");
-                    addItem("hp");
-                }
+                addItem("firstSword", 1);
+                addItem("hp", 4);
             });
         </script>
 
