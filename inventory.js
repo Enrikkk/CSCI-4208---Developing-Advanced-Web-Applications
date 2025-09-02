@@ -2,7 +2,7 @@
 // we don't have to create a super long url, like we did in the labs.
 
 // Function to check if the inventory is empty.
-function inventoryEmpty() {
+function isInventoryEmpty() {
   let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
   return Object.keys(inventory).length == 0;
 }
@@ -44,10 +44,11 @@ function removeItem(item, quantity) {
 
 // This function will delete an item from the inventory, even it's key, 
 // so the item won't appear in the iventory anymore, not even with 0 units of it.
-function deleteItem(inventory, item) {
+function deleteItem(item) {
   let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
   delete inventory[item];
   localStorage.setItem("inventory", JSON.stringify(inventory));
+  renderInventory();
 }
 
 // We are going to create a function to check the amount one item class in the inventory.
@@ -68,12 +69,17 @@ function emptyInventory() {
   }
 
   localStorage.setItem("inventory", JSON.stringify(inventory));
+  renderInventory();
 }
 
 // Function to remove inventory and head back to index.html, like if the game has just started.
 function gameOver() {
   emptyInventory();
   window.location.href = "index.html";
+}
+
+function renderTitle() {
+
 }
 
 // Function to render inventory in the designed container.
@@ -105,7 +111,7 @@ function renderInventory() {
 
   // If the inventory is empty, we just print a new paragraph saying it's empty.
   if (Object.keys(inventory).length === 0) {
-    container.innerHTML = "<p>(empty - no items at the moment)</p>";
+    container.innerHTML = "<h3> Inventory <h3> <p>(empty - no items at the moment)</p>";
   } else {
     // If there is any item, we just render it.
     for (let item in inventory) {
@@ -119,7 +125,7 @@ function renderInventory() {
       slot.appendChild(img); // Append image in slot.
 
       // Creates a "div" block to show how many units of this item we have.
-      let count = document.createElement("div");
+      let count = document.createElement("p");
       count.className = "count";
       count.textContent = inventory[item];
       slot.appendChild(count); // Append count into slot.

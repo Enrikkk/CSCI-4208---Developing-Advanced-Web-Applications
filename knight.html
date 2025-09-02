@@ -8,35 +8,41 @@
     </head>
 
     <body>
-        <h1> You've chosen the Knight's path. </h1>
-        
-        <hr>
+        <div style="background-image: url('assets/knight.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
+            <h1> You've chosen the Knight's path. </h1>
+            
+            <hr>
 
-        <h3> Your final duty as a knith's path follower is to defeat the darklord, therefore saving the kingdom from countless years of terror and suffering! </h3>
-        <p> However, this isn't as easy as it may sound.
-            First, you have to train youself into a respectable knight.
-            But it won't be as easy as it sounds...
-            You will have to find your way.
-        </p>
-        <p> Your only choice now is to wander through these lands, who knows what you will find... </p>
-        
-        <img src="assets/knight.png">
+            <h3> Your final duty as a knight is to defeat the darklord, therefore saving the kingdom from countless years of terror and suffering! </h3>
+            <p> However, this isn't as easy as it may sound.
+                First, you have to train youself into a respectable knight.
+                But it won't be as easy as it sounds...
+                You will have to find your way.
+            </p>
+            <p> Your only choice now is to wander through these lands, who knows what awaits you... </p>
 
-        <p>
-            <a href="entrance.html"> <button> Keep Wandering </button> </a>
-        </p>
+            <p>
+                <a href="entrance.html"> <button> Keep Wandering </button> </a>
+            </p>
 
-        <h3> Inventory </h3>
-        <div id="inventory" class="inventory"></div>
-        <script src="inventory.js" defer> </script>
-        <script> // We use "addEventListener" so that this script doesn't take place
-                 // before the page is fully loaded.
-            document.addEventListener("DOMContentLoaded", () => {
-                addItem("firstSword", 1);
-                addItem("hp", 4);
-            });
-        </script>
-
+            <div id="inventory" class="inventory">
+                <script src="inventory.js" defer></script>
+            </div>
+            <script> // We use "addEventListener" so that this script doesn't take place
+                    // before the page is fully loaded.
+                document.addEventListener("DOMContentLoaded", () => {
+                    if(isInventoryEmpty()) {
+                        addItem("firstSword", 1);
+                        addItem("hp", 4);
+                    }
+                });
+            </script>
+        </div>
     </body>
 
 </html>

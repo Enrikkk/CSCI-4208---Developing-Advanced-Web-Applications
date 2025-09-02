@@ -8,21 +8,26 @@
     </head>
 
     <body>
-        <h1> Choose Your Path! </h1>
+        <div style="background-image: url('assets/castle.jpg');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
 
-        <img src="assets/castle.jpg" >
+            <h1 class="middle-title" > Choose Your Path! </h1>
 
-        <p> 
-            <a href="knight.html"> <button> Knight's Path </button> </a> 
-            <a href="archer.html"> <button> Archer's Path </button> </a>
-            <a href="wizard.html"> <button> Wizard's Path </button> </a>
-        </p>
+            <div class="space-evenly" style = "padding-top: 400px;" > 
+                <a href="knight.html"> <button class="mediumButton" > Knight's Path </button> </a> 
+                <a href="archer.html"> <button class="mediumButton" > Archer's Path </button> </a>
+                <a href="wizard.html"> <button class="mediumButton" > Wizard's Path </button> </a>
+            </div>
 
-        <h3> Inventory </h3>
-        <div id="inventory" class="inventory"></div>
-        <script src="inventory.js" defer></script>
-
-
+            <div id="inventory" class="inventory">
+                <p> Inventor </p>
+                <script src="inventory.js" defer></script>
+            </div>
+        </div>
     </body>
 
 </html>
