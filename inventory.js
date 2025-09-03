@@ -1,75 +1,64 @@
-// This file will be created to model our inventory in a way that 
-// we don't have to create a super long url, like we did in the labs.
 
 // Function to check if the inventory is empty.
 function isInventoryEmpty() {
-  let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
-  return Object.keys(inventory).length == 0;
+  let inventory = new URLSearchParams(location.search);
+  return inventory.size === 0;;
 }
 
 // Function to add an item to the inventory.
 function addItem(item, quantity) {
-  // With the localStorage.getItem function we read the inventory string stored in the brower.
-  // The JSON.parse is to convert it to a JavaScript object and, the "|| {}" part is 
-  // to create a new object in case this "inventory" object doesn't exists already.
-  let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
-  if (inventory[item]) { // If item exists, increase.
-    inventory[item] += quantity;
-  } else {
-    inventory[item] = quantity; // If it doesn't exist, we add it.
-  }
+  let inventory = new URLSearchParams(location.search);
 
-  // Here, with JSON.stringify we convert the inventory back to string and, with 
-  // localStorage.setItem, we save it back in the browser permanently.
-  localStorage.setItem("inventory", JSON.stringify(inventory));
-  renderInventory(); // Here we just update the inventory's display in the screen.
+  let current = parseInt(inventory.get(item)) || 0;
+  inventory.set(item, current + quantity);
+
+  // Update the URL in the address bar, but don't reload
+  window.history.pushState({}, "", "?" + inventory.toString());
+
+  // Re-render inventory UI
+  renderInventory();
 }
+
 
 // This function will be to remove an amount of items from the inventory.
 // For example, this will be used to show how our characters loose life when they get attacked.
 // IMPORTANT - This function will maintain the object's key in the inventory 
 // even if it's amount is now 0.
 function removeItem(item, quantity) {
-  let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
-  if(inventory[item] <= quantity) {
-    inventory[item] = 0;
+  let inventory = new URLSearchParams(location.search);
+
+  var current = parseInt(inventory.get(item)) || 0;
+
+  if(current <= quantity) {
+    inventory.set(item, 0);
   } else {
-    inventory[item] -= quantity;
+    inventory.set(item, current - quantity);
   }
 
-  // Update the inventory's content and re-render it.
-  localStorage.setItem("inventory", JSON.stringify(inventory));
-  renderInventory();
+  location.search = inventory.toString();
 }
 
 // This function will delete an item from the inventory, even it's key, 
 // so the item won't appear in the iventory anymore, not even with 0 units of it.
 function deleteItem(item) {
-  let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
-  delete inventory[item];
-  localStorage.setItem("inventory", JSON.stringify(inventory));
-  renderInventory();
+  let inventory = new URLSearchParams(location.search);
+
+  inventory.delete(item);
+
+  location.search = inventory.toString();
 }
 
 // We are going to create a function to check the amount one item class in the inventory.
 function amountItem(item) {
-  let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
+  let inventory = new URLSearchParams(location.search);
 
-  return inventory[item];
+  return parseInt(inventory.get(item)) || 0;
 }
 
 // Now, we are going to create a function to empty the inventory, so that it is 
 // reseted whenever the character dies.
 function emptyInventory() {
-
-  let inventory = JSON.parse(localStorage.getItem("inventory"));
-
-  for(let item in inventory) {
-    delete inventory[item];
-  }
-
-  localStorage.setItem("inventory", JSON.stringify(inventory));
-  renderInventory();
+  location.search = ""; // It is as simple as this.
 }
 
 // Function to remove inventory and head back to index.html, like if the game has just started.
@@ -78,15 +67,10 @@ function gameOver() {
   window.location.href = "index.html";
 }
 
-function renderTitle() {
-
-}
-
 // Function to render inventory in the designed container.
 function renderInventory() {
 
-  // Get the inventory string and convert it into a js object, as before.
-  let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
+  let inventory = new URLSearchParams(location.search);
 
   // Icons used for the different objects that can be obtained.
   // IMPORTANT - Add paths without the "/" before, or else these won't be relative 
@@ -106,15 +90,14 @@ function renderInventory() {
   // If a place to render the inventory hasn't been asigned, then we return, not rendering anything,
   if (!container) return;
 
-  // Used to clear the inventory (div container) before rendering, so items don't duplicate.
-  container.innerHTML = "";
+  container.innerHTML = ""; // We clear the container before rendering.
 
   // If the inventory is empty, we just print a new paragraph saying it's empty.
-  if (Object.keys(inventory).length === 0) {
-    container.innerHTML = "<h3> Inventory <h3> <p>(empty - no items at the moment)</p>";
+  if (inventory.size === 0) {
+    container.innerHTML = "<p>(empty - no items at the moment)</p>";
   } else {
     // If there is any item, we just render it.
-    for (let item in inventory) {
+    for (let [item, count] of inventory.entries()) {
       // We create the div block that will contain the item slot.
       let slot = document.createElement("div");
       slot.className = "slot"; // CSS stiling.
@@ -125,10 +108,10 @@ function renderInventory() {
       slot.appendChild(img); // Append image in slot.
 
       // Creates a "div" block to show how many units of this item we have.
-      let count = document.createElement("p");
-      count.className = "count";
-      count.textContent = inventory[item];
-      slot.appendChild(count); // Append count into slot.
+      let counter = document.createElement("p");
+      counter.className = "count";
+      counter.textContent = count;
+      slot.appendChild(counter); // Append count into slot.
 
       container.appendChild(slot); // Append slot in container (inventory bar) .
     }

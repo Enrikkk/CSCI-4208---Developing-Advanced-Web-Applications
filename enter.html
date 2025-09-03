@@ -9,17 +9,54 @@
     </head>
 
     <body>
-        <h1> You are in the castle's royal courtyard. </h1>
-        <h3> Now, you need to figure out a way to prepare yourself to fight the darklord. </h3>
-        <h4> Where will you go now? </h4>
-        <img src="assets/inCastle.png"
+        <div style="background-image: url('assets/inCastle.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
+            <h1> You are in the castle's royal courtyard. </h1>
+            <h3> Now, you need to figure out a way to prepare yourself to fight the darklord. </h3>
+            <h4> Where will you go now? </h4>
 
-        <hr>
+            <hr>
 
-            <p> <a href = "academy.html"> Go to the Training Academy </a> </p>
-            <p> <a href = "garden.html"> Go to the Royal Garden </a> </p>
-            <p> <a href = "king.html"> Go see the king </a> </p>
-            <p> <a href = "entrance.html"> Exit </a> </p>
+                <p> <a id="academy" href = "academy.html"> 
+                    <button class="smallButton"
+                            style="position: absolute;
+                                   left: 3%;
+                                   top: 45%;" > Training Academy </button> </a> </p>
+                
+                <p> <a id="garden" href = "garden.html">  
+                    <button class="smallButton"
+                            style="position: absolute;
+                                   right: 14%;
+                                   bottom: 25%;" > Royal Garden </button> </a> </p>
+                
+                    <p> <a id="king" href = "king.html"> 
+                    <button class="smallButton"
+                            style="position:absolute;
+                                   left: 45%;
+                                   bottom: 55%;" > See the king </button> </a> </p>
+
+                <p> <a id="exit" href = "entrance.html">  
+                    <button class="exitButton"
+                            style="position: absolute;
+                                   left: 38%;
+                                   bottom: 12%;" > Exit </button> </a> </p>
+            
+            <p class="inventory-title"> Inventory </p>
+            <div id="inventory" class="inventory"></div>
+                
+            <script src="inventory.js"> </script>
+        </div>
+
+        <script>
+            academy.href += location.search;
+            garden.href += location.search;
+            king.href += location.search;
+            exit.href += location.search;
+        </script>
 
     </body>
 

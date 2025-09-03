@@ -27,20 +27,23 @@
             <p> Your only choice now is to wander through these lands, who knows what awaits you... </p>
 
             <p>
-                <a href="entrance.html"> <button> Keep Wandering </button> </a>
+                <a id='entrance' href="entrance.html"> <button class="mediumButton centered"
+                                                 style="margin-top: 80px;" > Keep Wandering </button> </a>
             </p>
 
-            <div id="inventory" class="inventory">
-                <script src="inventory.js" defer></script>
-            </div>
-            <script> // We use "addEventListener" so that this script doesn't take place
-                    // before the page is fully loaded.
-                document.addEventListener("DOMContentLoaded", () => {
-                    if(isInventoryEmpty()) {
-                        addItem("firstSword", 1);
-                        addItem("hp", 4);
-                    }
-                });
+            <p class="inventory-title"> Inventory </p>
+            <div id="inventory" class="inventory"></div>
+            
+            <script src="inventory.js"></script>
+            <script>
+                if(amountItem("firstSword") === 0) {
+                    addItem("firstSword", 1);
+                    addItem("hp", 4);
+                }
+            </script>
+
+            <script>
+                entrance.href += location.search;
             </script>
         </div>
     </body>

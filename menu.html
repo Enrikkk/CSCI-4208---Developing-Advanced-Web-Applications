@@ -17,16 +17,23 @@
 
             <h1 class="middle-title" > Choose Your Path! </h1>
 
-            <div class="space-evenly" style = "padding-top: 400px;" > 
-                <a href="knight.html"> <button class="mediumButton" > Knight's Path </button> </a> 
-                <a href="archer.html"> <button class="mediumButton" > Archer's Path </button> </a>
-                <a href="wizard.html"> <button class="mediumButton" > Wizard's Path </button> </a>
+            <div class="space-evenly" style = "padding-top: 330px;" > 
+                <a id="knight" href="knight.html"> <button class="mediumButton" > Knight's Path </button> </a> 
+                <a id="archer" href="archer.html"> <button class="mediumButton" > Archer's Path </button> </a>
+                <a id="wizard" href="wizard.html"> <button class="mediumButton" > Wizard's Path </button> </a>
             </div>
 
+            <p class="inventory-title" > Inventory </p>
             <div id="inventory" class="inventory">
-                <p> Inventor </p>
                 <script src="inventory.js" defer></script>
             </div>
+
+            <script>
+                knight.href += location.search;
+                archer.href += location.search;
+                wizard.href += location.search;
+            </script>
+
         </div>
     </body>
 

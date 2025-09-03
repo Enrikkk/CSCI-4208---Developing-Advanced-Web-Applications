@@ -1,0 +1,60 @@
+<html>
+
+    <head>
+        <title> Triple Adventure </title>
+        <link rel="icon" href="assets/weapons/cimitar.png" />
+        <link rel="stylesheet" href="styles/styles.css" >
+    </head>
+
+    <body>
+        <div style="background-image: url('assets/trollFight.webp');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
+        
+            <h1> You are fighting the troll </h1>
+
+            <hr>
+
+                <div class="fightSlot" >
+                    <p class="fight-text" > What will you do now? </p>
+                    
+                    <div class="fight-buttons-display" >
+                        <button onclick="attackTroll();"
+                            class="fight-button" > Attack 
+                        </button>
+
+                        <button onclick="dodgeTroll();"
+                                class="fight-button" > Dodge 
+                        </button>
+
+                        <button onclick="danceTroll();"
+                            class="fight-button" > Dance 
+                        </button>
+
+                        <button onclick="fleeTroll();"
+                                class="fight-button" > Flee 
+                        </button>
+                    </div>
+
+                    <a id="exit" href = "enter.html"> 
+                    <button class="exitButton"
+                            style="margin-top: 25%;" > Exit </button> 
+                    </a>
+                </div>
+
+            <p class="inventory-title" > Inventory </p>
+            <div id="inventory" class="inventory">
+                <script src="inventory.js" defer></script>
+            </div>
+        </div>
+
+        <script>
+            exit.href += location.search;
+        </script>
+
+    </body>
+
+</html>

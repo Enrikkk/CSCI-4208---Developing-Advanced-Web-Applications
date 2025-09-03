@@ -18,9 +18,19 @@
         <p> <!-- HERE IMPLEMENT A CONDITION THAT IF YOU HAVE THE KING'S MEDALLION, YOU CAN 
                  SHOW IT TO HIM, AND HE WILL LET YOU PASS.
                  OR ELSE, HE WON'T -->
-            <a href = "training.html"> <button> Ask Him to Enter </button> </a>
-            <a href = "enter.html"> <button> Exit </button> </a>
+            <a id="training" href = "training.html"> <button> Ask Him to Enter </button> </a>
+            <a id="exit" href = "enter.html"> <button> Exit </button> </a>
         </p>
+
+        <p class="inventory-title" > Inventory </p>
+        <div id="inventory" class="inventory">
+            <script src="inventory.js" defer></script>
+        </div>
+
+        <script>
+            training.href += location.search;
+            exit.href += location.search;
+        </script>
 
     </body>
 

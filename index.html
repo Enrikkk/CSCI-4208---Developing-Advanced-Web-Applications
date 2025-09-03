@@ -19,12 +19,17 @@
             
             <div class="space-evenly"
                  style = "padding-top: 100px;" >
-                <a href="menu.html"> <button class="bigButton" > Play Game </button> </a>
+                <a id="menu" href="menu.html"> <button class="bigButton" > Play Game </button> </a>
                 <a href="https://github.com/Enrikkk/CSCI-4208---Developing-Advanced-Web-Applications/tree/master"> 
                     <button class="bigButton" > See Code </button> 
                 </a>
             </div>
         </div>
+
+        <script>
+            menu.href += location.search;
+        </script>
+
     </body>
 
 </html>
