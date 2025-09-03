@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title> RPG Adventure game </title>
+        <link rel= "icon" href= "assets/dragon-logo.png" />
+    </head>
+    <body>
+        <h1>Courtyard</h1> 
+        <hr>
+
+        <h2> A large, corrupted ogre stands at the center. </h2>
+        <img src='assets/corrupted-ogre.gif' width="480">
+        <p> "No ordinary weapons will cut through that.."</p>
+        <p> You suddenly remember the power within you. You look at your hands, sparking with pure energy.</p>
+        
+        <h4> What will you do? </h4>
+
+        <div id = "battleText"></div>
+
+        <div id='options'>
+        <button id='Electric blast' onclick='attack()'> Fight </button>
+        <a id='wizardPath' href='wizardPath.html'>
+            <button> Retreat </button>
+        </a>
+        <hr>
+        <a id= 'dorm' href='wizardPath.html'>Retreat to dorms</a> 
+        </div>
+        <hr>
+        <iframe src='inventory.html' id=inventory height=100 width=125></iframe>
+        <script>
+            inventory.src += location.search;
+            wizardPath.href += location.search;
+            var queryString = new URLSearchParams(location.search);
+            var gp = +queryString.get("gp");
+            var hp = +queryString.get("hp");
+            var ap = +queryString.get("ap");
+            var ogreHP = 10, ogreAP = 2;
+            function attack(){
+                ogreHP -= ap;
+                if (ogreHP <= 0){
+                    courtyardGate.src ='assets/';
+                    queryString.set('gp',gp+3);
+                    queryString.set('hp',hp);
+                    inventory.src ='inventory.html?'+queryString;
+                    battleText.innerHTML =`You defeated the ogre and come upon a glowing door.`
+                    options.innerHTML =`<a href='wizardPath.html?${queryString}'><button>Go back</button></a>`
+                }
+                else {
+                    hp -= ogreAP
+                    queryString.set('hp',hp);
+                    inventory.src ='inventory.html?'+queryString;
+                    battleText.innerHTML =`You hit for ${ap} damage, it has ${ogreHP}hp left.<br> You take ${ogreAP} damage.}`
+                    if (hp <= 0){
+                        battleText.innerHTML =`You Died.`
+                        options.innerHTML =`<a href= 'index.html'><button>Game Over</button></a>`
+                    }
+                }
+            }
+        </script>
+    </body>
+<html>
