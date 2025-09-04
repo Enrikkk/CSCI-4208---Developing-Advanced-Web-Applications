@@ -33,7 +33,7 @@
                                    right: 14%;
                                    bottom: 25%;" > Royal Garden </button> </a> </p>
                 
-                    <p> <a id="king" href = "king.html"> 
+                    <p> <a id="king" > 
                     <button class="smallButton"
                             style="position:absolute;
                                    left: 45%;
@@ -47,15 +47,29 @@
             
             <p class="inventory-title"> Inventory </p>
             <div id="inventory" class="inventory"></div>
-                
             <script src="inventory.js"> </script>
+            <div id="flags" class="flagBox">
+                <script src="inventory.js" defer></script>
+            </div>
         </div>
 
         <script>
             academy.href += location.search;
             garden.href += location.search;
-            king.href += location.search;
             exit.href += location.search;
+
+            
+            // Now, we have to check if the troll has been defeated in order to see 
+            // which page will be loaded for the "see king" button.
+            document.getElementById("king").addEventListener("click", () => {
+                var defeated = amountItem("trollDefeated");
+                if(defeated === 0) {
+                    king.href = "king.html" + location.search;
+                } else {
+                    king.href = "deadTroll.html" + location.search;
+                }
+            });
+
         </script>
 
     </body>

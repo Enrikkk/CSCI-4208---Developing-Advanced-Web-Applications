@@ -53,9 +53,27 @@ body { font-family: sans-serif; }
   display: flex;
   gap: 40px;
   margin-top: 1%;
+  margin-bottom: 2%;
 }
 
-/* Slot container */
+.trollHealthSlot {
+  width: 600px;
+  height: 90px;
+  background-color: gray;
+  border: 2px solid black;
+  border-radius:20px;
+  overflow: hidden;
+  margin-top: 2%;
+  margin-left: 27%;
+}
+
+.trollHealthBar {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(214, 15, 15);
+  transition: width 0.3s ease;
+}
+
 .slot {
   width: 64px;
   height: 64px;
@@ -69,14 +87,12 @@ body { font-family: sans-serif; }
   margin-bottom: 10px;
 }
 
-/* Item image inside slot */
 .slot img {
   max-width: 85%;
   max-height: 85%;
   object-fit: contain;
 }
 
-/* Count overlay (bottom-right) */
 .count {
   position: absolute;
   bottom: 2px;
@@ -88,6 +104,16 @@ body { font-family: sans-serif; }
   background: rgba(0,0,0,0.5);
   padding: 1px 4px;
   border-radius: 3px;
+}
+
+.flagBox {
+  display: inline-flex;
+  justify-content: center;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  position: absolute;
+  bottom: 1%;
+  right: 2%;
 }
 
 .bigButton {

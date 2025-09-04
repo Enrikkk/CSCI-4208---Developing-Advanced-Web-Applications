@@ -27,18 +27,25 @@
             <p> Your only choice now is to wander through these lands, who knows what awaits you... </p>
 
             <p>
-                <a id='entrance' href="entrance.html"> <button class="mediumButton centered"
-                                                 style="margin-top: 80px;" > Keep Wandering </button> </a>
+                <a id='entrance' href="entrance.html"> 
+                    <button class="mediumButton"
+                    style="margin-top: 80px;
+                           position: absolute;
+                           left: 40%;
+                           top: 43%" > Keep Wandering </button> </a>
             </p>
 
             <p class="inventory-title"> Inventory </p>
             <div id="inventory" class="inventory"></div>
             
             <script src="inventory.js"></script>
+            <div id="flags" class="flagBox">
+                <script src="inventory.js" defer></script>
+            </div>
             <script>
                 if(amountItem("firstSword") === 0) {
-                    addItem("firstSword", 1);
-                    addItem("hp", 4);
+                    addItem("firstSword", 3);
+                    addItem("hp", 7);
                 }
             </script>
 

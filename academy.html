@@ -7,29 +7,47 @@
     </head>
 
     <body>
-        <h1> You are now in the academy's main hall. </h1>
-        <h4> There is a royal guard protecting the entrance to the barracks. </h4>
-        
-        <p> 
-            He is standing still, as if he was a statue...
-            What are you going to do?
-        </p>
+        <div style="background-image: url('assets/academy.jpg');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
+                <h1> You are now in the academy's main hall. </h1>
+                <h4> There is a royal guard protecting the entrance to the barracks. </h4>
+                
+                <p> 
+                    He is standing still, as if he was a statue...
+                    What are you going to do?
+                </p>
 
-        <p> <!-- HERE IMPLEMENT A CONDITION THAT IF YOU HAVE THE KING'S MEDALLION, YOU CAN 
-                 SHOW IT TO HIM, AND HE WILL LET YOU PASS.
-                 OR ELSE, HE WON'T -->
-            <a id="training" href = "training.html"> <button> Ask Him to Enter </button> </a>
-            <a id="exit" href = "enter.html"> <button> Exit </button> </a>
-        </p>
+                <p>
+                    <a id="training"> 
+                        <button onClick="enterTraining();" > Ask Him to Enter </button> </a>
+                    <a id="exit" href = "enter.html"> <button> Exit </button> </a>
+                </p>
 
-        <p class="inventory-title" > Inventory </p>
-        <div id="inventory" class="inventory">
-            <script src="inventory.js" defer></script>
+                <p class="inventory-title" > Inventory </p>
+                <div id="inventory" class="inventory">
+                    <script src="inventory.js" defer></script>
+                </div>
+                <div id="flags" class="flagBox">
+                    <script src="inventory.js" defer></script>
+            </div>
         </div>
-
         <script>
             training.href += location.search;
             exit.href += location.search;
+
+            function enterTraining() {
+                if(amountItem("medallion") == 1) {
+                    confirm("You show the guard the medallion the king gave you, so he will let you pass.");
+                    window.location.href="training.html" + location.search;
+                } else {
+                    confirm("The royal guard does not consider you worthy to get into the royal barracks.\n He will not let you pass.")
+                }
+            }
+
         </script>
 
     </body>

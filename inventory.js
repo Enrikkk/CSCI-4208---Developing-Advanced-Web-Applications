@@ -15,7 +15,6 @@ function addItem(item, quantity) {
   // Update the URL in the address bar, but don't reload
   window.history.pushState({}, "", "?" + inventory.toString());
 
-  // Re-render inventory UI
   renderInventory();
 }
 
@@ -29,13 +28,11 @@ function removeItem(item, quantity) {
 
   var current = parseInt(inventory.get(item)) || 0;
 
-  if(current <= quantity) {
-    inventory.set(item, 0);
-  } else {
-    inventory.set(item, current - quantity);
-  }
+  inventory.set(item, Math.max(0, current - quantity));
 
-  location.search = inventory.toString();
+  window.history.replaceState({}, "", "?" + inventory.toString());
+
+  renderInventory();
 }
 
 // This function will delete an item from the inventory, even it's key, 
@@ -55,15 +52,7 @@ function amountItem(item) {
   return parseInt(inventory.get(item)) || 0;
 }
 
-// Now, we are going to create a function to empty the inventory, so that it is 
-// reseted whenever the character dies.
-function emptyInventory() {
-  location.search = ""; // It is as simple as this.
-}
-
-// Function to remove inventory and head back to index.html, like if the game has just started.
 function gameOver() {
-  emptyInventory();
   window.location.href = "index.html";
 }
 
@@ -79,18 +68,20 @@ function renderInventory() {
     hp: "assets/hp.png",
     firstSword: "assets/weapons/firstSword.avif",
     greatSword: "assets/weapons/greatSword.jpeg",
-    firstArmor: "assets/firstArmor.webp",
     gloryArmor: "assets/gloryArmor.webp",
-    medallion: "assets/medallion.png"
+    medallion: "assets/medallion.png",
+    strength: "assets/strength.png"
   };
 
   // Used to find the "div" in HTML where we want to render out inventory.
   let container = document.getElementById("inventory");
+  let flags = document.getElementById("flags");
 
   // If a place to render the inventory hasn't been asigned, then we return, not rendering anything,
   if (!container) return;
 
   container.innerHTML = ""; // We clear the container before rendering.
+  flags.innerHTML = "";
 
   // If the inventory is empty, we just print a new paragraph saying it's empty.
   if (inventory.size === 0) {
@@ -98,6 +89,8 @@ function renderInventory() {
   } else {
     // If there is any item, we just render it.
     for (let [item, count] of inventory.entries()) {
+      if(item === "trollDefeated" || item === "strength" || item === "doorOpened")
+        continue;
       // We create the div block that will contain the item slot.
       let slot = document.createElement("div");
       slot.className = "slot"; // CSS stiling.
@@ -116,9 +109,28 @@ function renderInventory() {
       container.appendChild(slot); // Append slot in container (inventory bar) .
     }
   }
+
+  // Now, it's time to render boosts and flags.
+  if(flags.size !== 0) {
+    for(let item of inventory.entries()) {
+      if(item === "strength") {
+        let img = document.createElement("img");
+        img.src = itemIcons[item]
+        img.alt = item;
+
+        flags.appendChild(img);
+      }
+    }
+  }
+
 }
 
 // Automatically render inventory when a new page is loaded.
 document.addEventListener("DOMContentLoaded", () => {
   renderInventory();
 });
+
+// Sleep function for animations.
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
