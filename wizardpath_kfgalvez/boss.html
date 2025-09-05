@@ -1,7 +1,9 @@
 <html>
     <head>
         <title> RPG Adventure game </title>
-        <link rel= "icon" href= "assets/dragon-logo.png" />
+        <link rel="icon" href="assets/weapons/cimitar.png" />
+        <link rel="stylesheet" href="styles/styles.css">
+        <link rel="stylesheet" href="wizard-styles/wizard-styles.css">
     </head>
     <body>
         <h1>The King Dragon's Lair</h1> 
@@ -26,6 +28,10 @@
 
         <button id='CursedBook' onclick='cursedBook()'> Use Cursed Book </button>
 
+        <div id="doorButtons" style="display:none;">
+        <button onclick="location.href='menu.html?' + queryString">Return to Menu</button>
+        </div>
+
         <a id='courtyard' href='courtyard.html'>
             <button> Retreat </button>
         </a>
@@ -33,18 +39,20 @@
         </div>
         
         <hr>
-        <iframe src='inventory.html' id=inventory height=100 width=125></iframe>
+        <iframe src='inventory.html' id=inventory height=100 width=200></iframe>
         <script>
+            //update inventories and all items
             inventory.src += location.search;
             var queryString = new URLSearchParams(location.search);
             var gp = +queryString.get("gp");
             var hp = +queryString.get("hp");
             var ap = +queryString.get("ap");
+            //track if dragon is dead
             var dragonDead = queryString.get('dragonDead') == 'true';
             var dragonHP = 1000, dragonAP = 10;
             var options = document.getElementById('options');
 
-
+            //if dragon dead then displat magic stone
             if (dragonDead){
                 document.getElementById('dragonImage').style.display = 'none'; //hide dragon image once dead
                 document.getElementById('magicStone').style.display = 'block'; //show the stone
@@ -52,7 +60,7 @@
                 battleText.innerHTML = "The dragon has already been defeated. The mana stone awaits you.";
             }
         
-
+            //create function that allows dragon to die
             function cursedBook(){
                 dragonHP -= dragonHP; //insta kill the dragon with the cursed book
                 queryString.set('dragonDead', 'true'); ///prevents dragon from respawing
@@ -64,10 +72,8 @@
 
                 //once dragon is dead, only show return home option
 
-                var menuButton = document.createElement('a');
-                menuButton.href = 'menu.html?' + queryString;
-                homeButton.innerHTML = `<button>Return Home</button>`;
-                document.body.appendChild(homeButton);
+                document.getElementById('homeButton').style.display = 'inline-block';
+
             }
 
             function attack(){ //include attack function but never really going to kill the dragon like this 

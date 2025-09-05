@@ -2,16 +2,27 @@
     <head>
         <title> RPG Adventure game</title>
     <link rel="icon" href="assets/dragon-logo.png" />
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="wizard-styles/wizard-styles.css">
     </head>
     <body>
-        <h1>Alchemy lab</h1> <hr>
-        <a id='door' href= '#'>
-        <img id= 'doorImage' onclick='openDoor()' src='assets/lockeddoor.jpg' width="240">
-        </a>
-        <p id='textbox'></p>
-        <div> <a id='exit' href='wizardPath.html'>Retreat</a> </div>
-        <hr>
-        <iframe src='inventory.html' id=inventory height=100 width=125></iframe>
+        <div id="wizardWrapper">
+
+            <img id="wizardBackground" src='assets/lockeddoor.jpg'>
+
+            <div id="wizardOverlay">
+                <h1>Alchemy Lab</h1>
+                <p id='textbox'>Click the door to enter.</p>
+
+                <div id="wizardButtons">
+                    <button class="fight-button" id="openDoorBtn" onclick="openDoor()">Open Door</button>
+                </div>
+                
+                <a class="fight-button" id='exit' href='wizardPath.html'>Retreat</a>
+            </div>
+
+            <iframe src='inventory.html' id="inventory"></iframe>
+        </div>
         <script>
             var queryString = new URLSearchParams(location.search);
             var gp = +queryString.get("gp");
@@ -23,21 +34,15 @@
             //allows us to go into lab via href
             //can get potion to fight the courtyard boss now!
             function openDoor(){
-                if (doorImage.src.includes('OpenDoor')){  
-                    door.href ='insideAlchemy.html?'+queryString; 
-                }
                 //if we have a door, show the open door doorImage.
                 //display message that key has been reduced.
                 //now we can enter alchemy lab
                 if (keys > 0){
-
-                    doorImage.src='assets/OpenDoor.jpg'
                     textbox.innerHTML =`The door unlocked. but the key broke apart.`
                     keys--;
                     queryString.set('keys', keys);
                     inventory.src ='inventory.html?'+queryString;
-
-                    door.href ='insideAlchemy.html?'+queryString;
+                    window.location.href ='insideAlchemy.html?'+queryString;
                     exit.href ='wizardPath.html?'+queryString;
                 }
                 else {

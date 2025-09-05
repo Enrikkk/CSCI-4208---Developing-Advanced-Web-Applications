@@ -2,21 +2,27 @@
     <head>
         <title> RPG Adventure game </title>
         <meta charset="UTF-8">
+        <link rel="icon" href="assets/weapons/cimitar.png" />
+        <link rel="stylesheet" href="wizard-styles/wizard-styles.css">
         <link rel= "icon" href= "assets/dragon-logo.png" />
     </head>
     <body>  
-        <h1>Path of the Wizard</h1>
-        <hr>
-        <img src='assets/wizard-dorm.gif' width="480" />
-        <h4>You wake up bruised and injured in your room within the school of magic</h4>
-        <h4>"Where am I? What happened?"</h4>
-        <ul>
-            <li> <a id='courtyard' href='courtyard.html'> Courtyard </a> </li>
-            <li> <a id='library' href='library.html'> Library </a> </li>
-            <li> <a id='alchemy' href='alchemylab.html'> Alchemy Lab </a> </li>
-        </ul>
-        <hr>
+       <div id="wizardWrapper">
+        <img id="wizardBackground" src='assets/wizard-dorm.gif'>
+        <div id="wizardOverlay">
+            <h1>Path of the Wizard</h1>
+            <h4>You wake up bruised and injured in your room within the school of magic</h4>
+            <h4>"Where am I? What happened?"</h4>
+
+            <div id="wizardButtons">
+                <a class="fight-button" id='courtyard' href='#'>Courtyard</a>
+                <a class="fight-button" id='library' href='#'>Library</a>
+                <a class="fight-button" id='alchemy' href='#'>Alchemy Lab</a>
+            </div>
+        </div>
         <iframe src='inventory.html' id=inventory height=100 width=200></iframe>
+    </div>
+        <hr>
         <script> 
             var queryString = new URLSearchParams(location.search);
 
