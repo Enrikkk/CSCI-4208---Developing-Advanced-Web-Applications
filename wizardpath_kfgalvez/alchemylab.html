@@ -13,19 +13,31 @@
         <hr>
         <iframe src='inventory.html' id=inventory height=100 width=125></iframe>
         <script>
-            inventory.src += location.search;
-            exit.href += location.search;
             var queryString = new URLSearchParams(location.search);
-            var key = +queryString.get("keys");
+            var gp = +queryString.get("gp");
+            var hp = +queryString.get("hp");
+            var ap = +queryString.get("ap");
+            var keys = +queryString.get("keys");
+            inventory.src = 'inventory.html?' + queryString;
+            exit.href += location.search;
+            //allows us to go into lab via href
+            //can get potion to fight the courtyard boss now!
             function openDoor(){
-                if (doorImage.src.includes('OpenDoor')){
-                    door.href ='alchemy-inside.html?'+queryString;
+                if (doorImage.src.includes('OpenDoor')){  
+                    door.href ='insideAlchemy.html?'+queryString; 
                 }
-                else if (key > 0){
+                //if we have a door, show the open door doorImage.
+                //display message that key has been reduced.
+                //now we can enter alchemy lab
+                if (keys > 0){
+
                     doorImage.src='assets/OpenDoor.jpg'
                     textbox.innerHTML =`The door unlocked. but the key broke apart.`
-                    queryString.set('keys',--key);
+                    keys--;
+                    queryString.set('keys', keys);
                     inventory.src ='inventory.html?'+queryString;
+
+                    door.href ='insideAlchemy.html?'+queryString;
                     exit.href ='wizardPath.html?'+queryString;
                 }
                 else {

@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title> RPG Adventure game </title>
+        <link rel= "icon" href= "assets/dragon-logo.png" />
+    </head>
+    <body>
+        <h1>Labs</h1> 
+        <hr>
+
+        <h2> Many potions are being brewed within the cauldrons. </h2>
+        <img src='assets/alchemy-room.gif' width="480">
+        <p> Maybe you can find something useful in here? </p>
+        
+        <h4> What will you do? </h4>
+
+        <div id = "text"></div>
+
+        <!--
+        Allow player to grab key from alchemy lab
+        -->
+        <div id='options'>
+            <button onclick='grabPotion()'> Grab Strength Potion</button>
+            <hr>
+            <!-- allow players to go back to door -->
+            <!-- dynamically creates a url when clicking, thereby updating stats-->
+            <a id="exit" href="#" onclick="location.href='alchemylab.html?' + queryString">Leave the lab</a>
+        </div>
+        <hr>
+        <!-- present strength potion gif
+            display:none allows it to be hidden until clicked 
+        -->
+        <img id="strengthPotion" src="" width="100" style="display:none">
+
+        <iframe src='inventory.html' id=inventory height=100 width=125></iframe>
+        <script>
+            inventory.src += location.search;
+            var queryString = new URLSearchParams(location.search);
+            //document.getElementById('alchemy').href = 'alchemylab.html?' + queryString;
+            var gp = +queryString.get("gp");
+            var hp = +queryString.get("hp");
+            var ap = +queryString.get("ap");
+            var keys = +queryString.get("keys");
+            //when player clicks button, be presented with potion they now have !!!
+            function grabPotion(){
+                ap += 8;
+                //raise attack power
+                queryString.set("ap", ap);
+                //update inventory
+                inventory.src = 'inventory.html?' + queryString;
+                strengthPotion.src ='assets/strengthPotion.gif';
+                //show the potion after click
+                strengthPotion.style.display = "block";
+                text.innerHTML = "You grabbed a strength potion!";
+                }
+        </script>
+    </body>
+<html>

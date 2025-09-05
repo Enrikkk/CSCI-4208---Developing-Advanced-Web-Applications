@@ -14,16 +14,31 @@
         
         <h4> What will you do? </h4>
 
+        <!-- begin fight sequence with ogre-->
         <div id = "battleText"></div>
 
         <div id='options'>
-        <button id='Electric blast' onclick='attack()'> Fight </button>
+        <button id='Electric blast' onclick='attack()'> Electric Blast </button>
         <a id='wizardPath' href='wizardPath.html'>
             <button> Retreat </button>
         </a>
         <hr>
         <a id= 'dorm' href='wizardPath.html'>Retreat to dorms</a> 
         </div>
+
+        <!-- Display the three doors after defeating the ogre -->
+             <!-- Final doors section -->
+        <div id="finaldoors" style="display:none; position:relative; width:480px; margin:0 auto;">
+            <img src="assets/finaldoors.png" width="480">
+
+            <button style="position:absolute; bottom:10px; left:10px;"
+                onclick="location.href='cursedDoor.html?' + queryString" >Cursed</button>
+            <button style="position:absolute; bottom:10px; left:170px;"
+                onclick="location.href='bossDoor.html?' + queryString">Boss</button>
+            <button style="position:absolute; bottom:10px; left:330px;" 
+                onclick="location.href='puzzleDoor.html?' + queryString">Puzzle</button>
+        </div>
+
         <hr>
         <iframe src='inventory.html' id=inventory height=100 width=125></iframe>
         <script>
@@ -33,22 +48,29 @@
             var gp = +queryString.get("gp");
             var hp = +queryString.get("hp");
             var ap = +queryString.get("ap");
+            var ogreDead = queryString.get('ogreDead') == 'true';
             var ogreHP = 10, ogreAP = 2;
+
+            if (ogreDead){
+                options.style.display = "none"; //hide fight options
+                document.getElementById('finaldoors').style.display = 'block';
+            }
             function attack(){
                 ogreHP -= ap;
                 if (ogreHP <= 0){
-                    courtyardGate.src ='assets/';
                     queryString.set('gp',gp+3);
                     queryString.set('hp',hp);
+                    queryString.set('ogreDead', 'true'); //prevents ogre from respawning
                     inventory.src ='inventory.html?'+queryString;
-                    battleText.innerHTML =`You defeated the ogre and come upon a glowing door.`
-                    options.innerHTML =`<a href='wizardPath.html?${queryString}'><button>Go back</button></a>`
+                    battleText.innerHTML =`You defeated the ogre and come upon 3 doors..`
+                    options.style.display = "none"; //hide ui once ogre is dead
+                    document.getElementById('finaldoors').style.display = 'flex'; //show the doors
                 }
                 else {
                     hp -= ogreAP
                     queryString.set('hp',hp);
                     inventory.src ='inventory.html?'+queryString;
-                    battleText.innerHTML =`You hit for ${ap} damage, it has ${ogreHP}hp left.<br> You take ${ogreAP} damage.}`
+                    battleText.innerHTML =`You hit for ${ap} damage, it has ${ogreHP}hp left.<br> You take ${ogreAP} damage.`
                     if (hp <= 0){
                         battleText.innerHTML =`You Died.`
                         options.innerHTML =`<a href= 'index.html'><button>Game Over</button></a>`
