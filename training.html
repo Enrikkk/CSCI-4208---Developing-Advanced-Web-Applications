@@ -27,8 +27,8 @@
             <p> <a id="exit" href = "enter.html"> 
                 <button class="exitButton"
                         style="position: absolute;
-                            left: 17%;
-                            bottom: 22%;" > Exit </button> </a> </p>
+                               left: 46%;
+                               bottom: 8%;" > Exit </button> </a> </p>
 
             <p class="inventory-title" > Inventory </p>
             <div id="inventory" class="inventory">
@@ -49,8 +49,14 @@
             });
 
             function train() {
-                if(confirm("After training for several weeks with the best soldiers in the whole kingdom, you became true knight!"))
-                    addItem("strength", 1);
+                if(amountItem("strength") === 0) {
+                    if(confirm("After training for several weeks with the best soldiers in the whole kingdom, you became a true knight!"))
+                        addItem("strength", 1);
+                        exit.href = "enter.html"+location.search;
+                        renderInventory();
+                } else {
+                    confirm("You have already trained at the barracks, you are done here.")
+                }
             }
         </script>
     </body>

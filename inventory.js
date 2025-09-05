@@ -42,7 +42,9 @@ function deleteItem(item) {
 
   inventory.delete(item);
 
-  location.search = inventory.toString();
+  window.history.replaceState({}, "", "?" + inventory.toString());
+
+  renderInventory();
 }
 
 // We are going to create a function to check the amount one item class in the inventory.
@@ -67,7 +69,7 @@ function renderInventory() {
   const itemIcons = {
     hp: "assets/hp.png",
     firstSword: "assets/weapons/firstSword.avif",
-    greatSword: "assets/weapons/greatSword.jpeg",
+    greatSword: "assets/weapons/greatSword.png",
     gloryArmor: "assets/gloryArmor.webp",
     medallion: "assets/medallion.png",
     strength: "assets/strength.png"
@@ -89,7 +91,7 @@ function renderInventory() {
   } else {
     // If there is any item, we just render it.
     for (let [item, count] of inventory.entries()) {
-      if(item === "trollDefeated" || item === "strength" || item === "doorOpened")
+      if(item === "trollDefeated" || item === "strength" || item === "doorOpened" || item === "riddleSolved")
         continue;
       // We create the div block that will contain the item slot.
       let slot = document.createElement("div");
@@ -111,17 +113,16 @@ function renderInventory() {
   }
 
   // Now, it's time to render boosts and flags.
-  if(flags.size !== 0) {
-    for(let item of inventory.entries()) {
-      if(item === "strength") {
-        let img = document.createElement("img");
-        img.src = itemIcons[item]
-        img.alt = item;
+  // Now, it's time to render boosts and flags.
+  for (let [key, count] of inventory.entries()) {
+    if (key === "strength" && count > 0) {
+      let img = document.createElement("img");
+      img.src = itemIcons[key];
+      img.alt = key;
 
-        flags.appendChild(img);
-      }
+      flags.appendChild(img);
     }
-  }
+}
 
 }
 

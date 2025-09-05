@@ -1,0 +1,39 @@
+<html>
+    <!-- This page is very important in the stoy line.
+         It will represent the most visited place inside the castle. -->
+    
+    <head>
+        <title> Triple Adventure </title>
+        <link rel="icon" href="assets/weapons/cimitar.png" />
+        <link rel="stylesheet" href="styles/styles.css" >
+    </head>
+
+    <body>
+        <div style="background-image: url('assets/liftedSword.webp');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
+
+            <p> <a id="exit" href = "garden.html"> 
+                <button class="exitButton"
+                        style="position: absolute;
+                               left: 58%;
+                               bottom: 7%;" > Exit </button> </a> </p>
+            
+            <p class="inventory-title"> Inventory </p>
+            <div id="inventory" class="inventory"></div>
+            <script src="inventory.js"> </script>
+            <div id="flags" class="flagBox">
+                <script src="inventory.js" defer></script>
+            </div>
+        </div>
+
+        <script>
+            exit.href += location.search;
+        </script>
+
+    </body>
+
+</html>

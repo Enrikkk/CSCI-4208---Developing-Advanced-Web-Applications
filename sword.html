@@ -9,20 +9,33 @@
     </head>
 
     <body>
-        <div style="background-image: url('assets/pullSword.jpg');
+        <div style="background-image: url('assets/stuckSword.jpg');
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
                     width: 100%;
                     height: 100%;" >
             
+            <!-- We will use this div container to make the animation for lifting the sword. -->
+            <div    id = "lift"
+                    style="background-image: url('assets/liftSword.jpg');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 10000000000;
+                    opacity: 0;
+                    transition: opacity 3s ease-in-out" >
+            </div>
+
             <a> <button onclick="liftSword();"
                         class="smallButton"
                         style="position: absolute;
                                left:50%;
                                top: 40%" > Lift Sword </button> </a> </p>
 
-            <p> <a id="exit" href = "enter.html"> 
+            <p> <a id="exit" href = "garden.html"> 
                 <button class="exitButton"
                         style="position: absolute;
                                left: 58%;
@@ -36,10 +49,29 @@
             </div>
         </div>
 
+        <script src="inventory.js" defer> </script>
         <script>
-            function liftSword() {
-                if(amountItem("strength") !== 0) {
-                    
+            exit.href += location.search;
+
+            async function liftSword() {
+                if(amountItem("strength") > 0) {
+                    let transition = document.getElementById("lift");
+                    await sleep(500);
+                    transition.style.opacity="1";
+                    await sleep(2500);
+                    if(confirm("With the strength gained at the royal barracks, you were able to lift the mighty sword from the rock!")) {
+                        addItem("greatSword", 5);
+                        deleteItem("firstSword");
+                        window.location.href = "liftedSword.html" + location.search;
+                    } else {
+                        let transition = document.getElementById("lift");
+                        await sleep(500);
+                        transition.style.opacity="1";
+                        await sleep(2000);
+                        confirm("You were not able to lift the sword from the rock, you are not strong enough\nMaybe you need some training...");
+                    }
+                } else {
+                    confirm("You tried lifting the sword, but it didn't move\nMaybe you need some training...")
                 }
             }
         </script>

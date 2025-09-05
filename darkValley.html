@@ -1,0 +1,51 @@
+<html>
+    <!-- This page is very important in the stoy line.
+         It will represent the most visited place inside the castle. -->
+    
+    <head>
+        <title> Triple Adventure </title>
+        <link rel="icon" href="assets/weapons/cimitar.png" />
+        <link rel="stylesheet" href="styles/styles.css" >
+    </head>
+
+    <body>
+        <div style="background-image: url('assets/darkValley.jpg');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
+            <h1> You are not in the dark valley </h1>
+            <h3> You see the darklord's castle in the distance </h3>
+            <h4> Where will you go now? </h4>
+
+            <hr>
+
+                <p> <a id="main" href = "main.html"> 
+                    <button class="smallButton"
+                            style="position: absolute;
+                                   left: 40%;
+                                   top: 45%;" > Go to the Castle </button> </a> </p>
+
+                <p> <a id="exit" href = "garden.html">  
+                    <button class="exitButton"
+                            style="position: absolute;
+                                   left: 38%;
+                                   bottom: 12%;" > Exit </button> </a> </p>
+            
+            <p class="inventory-title"> Inventory </p>
+            <div id="inventory" class="inventory"></div>
+            <script src="inventory.js"> </script>
+            <div id="flags" class="flagBox">
+                <script src="inventory.js" defer></script>
+            </div>
+        </div>
+
+        <script>
+            main.href += location.search;
+            exit.href += location.search;
+        </script>
+
+    </body>
+
+</html>

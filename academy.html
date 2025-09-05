@@ -21,11 +21,17 @@
                     What are you going to do?
                 </p>
 
-                <p>
-                    <a id="training"> 
-                        <button onClick="enterTraining();" > Ask Him to Enter </button> </a>
-                    <a id="exit" href = "enter.html"> <button> Exit </button> </a>
-                </p>
+                <p> <a id="training" > <button onclick="enterTraining();"
+                            class="mediumButton"
+                            style="position: absolute;
+                                   right: 42%;
+                                   bottom: 40%" > Ask Him to Enter </button> </a> </p>
+
+            <p> <a id="exit" href = "enter.html"> 
+                <button class="exitButton"
+                        style="position: absolute;
+                               left: 46%;
+                               bottom: 8%;" > Exit </button> </a> </p>
 
                 <p class="inventory-title" > Inventory </p>
                 <div id="inventory" class="inventory">
@@ -36,13 +42,13 @@
             </div>
         </div>
         <script>
-            training.href += location.search;
             exit.href += location.search;
 
             function enterTraining() {
                 if(amountItem("medallion") == 1) {
-                    confirm("You show the guard the medallion the king gave you, so he will let you pass.");
-                    window.location.href="training.html" + location.search;
+                    if(confirm("You show the guard the medallion the king gave you, so he will let you pass.")) {
+                        window.location.href="training.html" + location.search;
+                    }
                 } else {
                     confirm("The royal guard does not consider you worthy to get into the royal barracks.\n He will not let you pass.")
                 }

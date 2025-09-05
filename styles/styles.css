@@ -108,7 +108,9 @@ body { font-family: sans-serif; }
 
 .flagBox {
   display: inline-flex;
-  justify-content: center;
+  justify-content: right;
+  height: 120px;
+  width: 256px;
   margin-right: 20px;
   margin-bottom: 10px;
   position: absolute;
