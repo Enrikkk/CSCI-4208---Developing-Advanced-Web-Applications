@@ -10,9 +10,9 @@
         <hr>
 
         <h2> You have entered the dragon's lair! </h2>
-        <img id = "dragonImage" src='assets/fire-dragon.jpg' width="480">
+        <img id = "dragonImage" src='assets/wizard_fire-dragon.jpg' width="480">
 
-        <img id = "magicStone" src = 'assets/mana-stone.jpg' width="480" style = "display:none;">
+        <img id = "magicStone" src = 'assets/wizard_mana-stone.jpg' width="480" style = "display:none;">
             
         <p> "There's no way I can beat that..."</p>
         <p> You suddenly remember the cursed book you found earlier!</p>
@@ -29,17 +29,17 @@
         <button id='CursedBook' onclick='cursedBook()'> Use Cursed Book </button>
 
         <div id="doorButtons" style="display:none;">
-        <button onclick="location.href='menu.html?' + queryString">Return to Menu</button>
+        <button onclick="location.href='wizard_menu.html?' + queryString">Return to Menu</button>
         </div>
 
-        <a id='courtyard' href='courtyard.html'>
+        <a id='courtyard' href='wizard_courtyard.html'>
             <button> Retreat </button>
         </a>
         <hr>
         </div>
         
         <hr>
-        <iframe src='inventory.html' id=inventory height=100 width=200></iframe>
+        <iframe src='wizard_inventory.html' id=inventory height=100 width=200></iframe>
         <script>
             //update inventories and all items
             inventory.src += location.search;
@@ -64,7 +64,7 @@
             function cursedBook(){
                 dragonHP -= dragonHP; //insta kill the dragon with the cursed book
                 queryString.set('dragonDead', 'true'); ///prevents dragon from respawing
-                inventory.src ='inventory.html?'+queryString;
+                inventory.src ='wizard_inventory.html?'+queryString;
                 battleText.innerHTML =`You defeated the dragon and can collect your prize!..`
                 options.style.display = "none"; //hide ui once ogre is dead
                 document.getElementById('dragonImage').style.display = 'none'; //hide dragon image once dead
@@ -80,7 +80,7 @@
                 dragonHP -= ap;
                 hp -= dragonAP
                 queryString.set('hp',hp);
-                inventory.src ='inventory.html?'+queryString;
+                inventory.src ='wizard_inventory.html?'+queryString;
                 battleText.innerHTML =`You hit for ${ap} damage, it has ${dragonHP}hp left.<br> You take ${dragonAP} damage.`
                 if (hp <= 0){
                     battleText.innerHTML =`You Died.`

@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <title> RPG Adventure game</title>
@@ -8,7 +9,7 @@
     <body>
         <div id="wizardWrapper">
 
-            <img id="wizardBackground" src='assets/lockeddoor.jpg'>
+            <img id="wizardBackground" src='assets/wizard_lockeddoor.jpg'>
 
             <div id="wizardOverlay">
                 <h1>Alchemy Lab</h1>
@@ -18,10 +19,10 @@
                     <button class="fight-button" id="openDoorBtn" onclick="openDoor()">Open Door</button>
                 </div>
                 
-                <a class="fight-button" id='exit' href='wizardPath.html'>Retreat</a>
+                <a class="fight-button" id='exit' href='wizard_wizardPath.html'>Retreat</a>
             </div>
 
-            <iframe src='inventory.html' id="inventory"></iframe>
+            <iframe src='wizard_inventory.html' id="inventory"></iframe>
         </div>
         <script>
             var queryString = new URLSearchParams(location.search);
@@ -29,7 +30,7 @@
             var hp = +queryString.get("hp");
             var ap = +queryString.get("ap");
             var keys = +queryString.get("keys");
-            inventory.src = 'inventory.html?' + queryString;
+            inventory.src = 'wizard_inventory.html?' + queryString;
             exit.href += location.search;
             //allows us to go into lab via href
             //can get potion to fight the courtyard boss now!
@@ -41,9 +42,9 @@
                     textbox.innerHTML =`The door unlocked. but the key broke apart.`
                     keys--;
                     queryString.set('keys', keys);
-                    inventory.src ='inventory.html?'+queryString;
-                    window.location.href ='insideAlchemy.html?'+queryString;
-                    exit.href ='wizardPath.html?'+queryString;
+                    inventory.src ='wizard_inventory.html?'+queryString;
+                    window.location.href ='wizard_insideAlchemy.html?'+queryString;
+                    exit.href ='wizard_wizardPath.html?'+queryString;
                 }
                 else {
                     textbox.innerHTML =`The door is locked`;

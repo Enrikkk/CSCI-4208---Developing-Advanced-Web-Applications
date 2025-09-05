@@ -7,7 +7,7 @@
     </head>
     <body>
       <div id="wizardWrapper">
-            <img id="wizardBackground" src='assets/alchemy-room.gif'> 
+            <img id="wizardBackground" src='assets/wizard_alchemy-room.gif'> 
             <div id="wizardOverlay"> 
                 <h1>Labs</h1>
                 <h2>Many potions are being brewed within the cauldrons.</h2>
@@ -15,11 +15,11 @@
                 <h4>What will you do?</h4>
                 <div id="wizardButtons"> <!---->
                     <button onclick='grabPotion()' class="fight-button">Grab Strength Potion</button>
-                    <a id="exit" class="fight-button" href="#" onclick="location.href='alchemylab.html?' + queryString">Leave the lab</a>
+                    <a id="exit" class="fight-button" href="#" onclick="location.href='wizard_alchemylab.html?' + queryString">Leave the lab</a>
                 </div>
             </div>
             <img id="strengthPotion" src="" width="100" style="display:none;"> <!-- SAME -->
-            <iframe src='inventory.html' id="inventory"></iframe> <!-- SAME -->
+            <iframe src='wizard_inventory.html' id="inventory"></iframe> <!-- SAME -->
         </div>
 
         <div id = "text"></div>
@@ -32,7 +32,7 @@
             <hr>
             <!-- allow players to go back to door -->
             <!-- dynamically creates a url when clicking, thereby updating stats-->
-            <a id="exit" href="#" onclick="location.href='alchemylab.html?' + queryString">Leave the lab</a>
+            <a id="exit" href="#" onclick="location.href='wizard_alchemylab.html?' + queryString">Leave the lab</a>
         </div>
         <hr>
         <!-- present strength potion gif
@@ -40,11 +40,10 @@
         -->
         <img id="strengthPotion" src="" width="100" style="display:none">
 
-        <iframe src='inventory.html' id=inventory height=100 width=125></iframe>
+        <iframe src='wizard_inventory.html' id=inventory height=100 width=125></iframe>
         <script>
             inventory.src += location.search;
             var queryString = new URLSearchParams(location.search);
-            //document.getElementById('alchemy').href = 'alchemylab.html?' + queryString;
             var gp = +queryString.get("gp");
             var hp = +queryString.get("hp");
             var ap = +queryString.get("ap");
@@ -55,8 +54,8 @@
                 //raise attack power
                 queryString.set("ap", ap);
                 //update inventory
-                inventory.src = 'inventory.html?' + queryString;
-                strengthPotion.src ='assets/strengthPotion.gif';
+                inventory.src = 'wizard_inventory.html?' + queryString;
+                strengthPotion.src ='assets/wizard_strengthPotion.gif';
                 //show the potion after click
                 strengthPotion.style.display = "block";
                 text.innerHTML = "You grabbed a strength potion!";

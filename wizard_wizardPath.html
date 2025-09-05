@@ -4,11 +4,10 @@
         <meta charset="UTF-8">
         <link rel="icon" href="assets/weapons/cimitar.png" />
         <link rel="stylesheet" href="wizard-styles/wizard-styles.css">
-        <link rel= "icon" href= "assets/dragon-logo.png" />
     </head>
     <body>  
        <div id="wizardWrapper">
-        <img id="wizardBackground" src='assets/wizard-dorm.gif'>
+        <img id="wizardBackground" src='assets/wizard_wizard-dorm.gif'>
         <div id="wizardOverlay">
             <h1>Path of the Wizard</h1>
             <h4>You wake up bruised and injured in your room within the school of magic</h4>
@@ -20,7 +19,7 @@
                 <a class="fight-button" id='alchemy' href='#'>Alchemy Lab</a>
             </div>
         </div>
-        <iframe src='inventory.html' id=inventory height=100 width=200></iframe>
+        <iframe src='wizard_inventory.html' id=inventory height=100 width=200></iframe>
     </div>
         <hr>
         <script> 
@@ -31,11 +30,11 @@
             if (!queryString.get("ap")) queryString.set("ap", 2);
             if (!queryString.get("keys")) queryString.set("keys", 0);
 
-            document.getElementById("courtyard").href = "courtyard.html?" + queryString;
-            document.getElementById("library").href = "library.html?" + queryString;
-            document.getElementById("alchemy").href = "alchemylab.html?" + queryString;
+            document.getElementById("courtyard").href = "wizard_courtyard.html?" + queryString;
+            document.getElementById("library").href = "wizard_library.html?" + queryString;
+            document.getElementById("alchemy").href = "wizard_alchemylab.html?" + queryString;
 
-            document.getElementById("inventory").src = "inventory.html?" + queryString;
+            document.getElementById("inventory").src = "wizard_inventory.html?" + queryString;
         </script>
     </body>
 <html>

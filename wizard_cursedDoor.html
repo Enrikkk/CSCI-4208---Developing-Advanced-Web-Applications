@@ -10,7 +10,7 @@
         <hr>
 
         <h2> The room has an unsettling aura.. </h2>
-        <img src='assets/cursed-room.gif' width="480">
+        <img src='assets/wizard_cursed-room.gif' width="480">
         <p> Maybe you can find something useful in here? </p>
         
         <h4> What will you do? </h4>
@@ -25,7 +25,7 @@
             <hr>
             <!-- allow players to go back to door -->
             <!-- dynamically creates a url when clicking, thereby updating stats-->
-            <a id="exit" href="#" onclick="location.href='courtyard.html?' + queryString">Leave the cursed room</a>
+            <a id="exit" href="#" onclick="location.href='wizard_courtyard.html?' + queryString">Leave the cursed room</a>
         </div>
         <hr>
         <!-- present strength potion gif
@@ -33,7 +33,7 @@
         -->
         <img id="cursedBook" src="" width="100" style="display:none">
 
-        <iframe src='inventory.html' id=inventory height=100 width=200></iframe>
+        <iframe src='wizard_inventory.html' id=inventory height=100 width=200></iframe>
         <script>
             inventory.src += location.search;
             var queryString = new URLSearchParams(location.search);
@@ -48,8 +48,8 @@
                 queryString.set("ap", ap);
                 queryString.set('book', true);
                 //update inventory
-                inventory.src = 'inventory.html?' + queryString;
-                cursedBook.src ='assets/cursed-physical-book.gif';
+                inventory.src = 'wizard_inventory.html?' + queryString;
+                cursedBook.src ='assets/wizard_cursed-physical-book.gif';
                 //show the cursed book after click
                 cursedBook.style.display = "block";
                 text.innerHTML = "You found a mysterious book!";

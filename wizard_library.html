@@ -7,7 +7,7 @@
     </head>
     <body>
         <div id="wizardWrapper">
-            <img id ="wizardBackground" src='assets/cursed-book.gif'>
+            <img id ="wizardBackground" src='assets/wizard_cursed-book.gif'>
             
             <!-- apply styles to the text over the gif-->
              <div id="wizardOverlay">
@@ -41,26 +41,26 @@
                 if (bookHP <= 0){
                     //hide old gif
                     var bg = document.getElementById('wizardBackground');
-                    bg.src = 'assets/strangekey.gif';
+                    bg.src = 'assets/wizard_strangekey.gif';
                     //show the key
                     document.getElementById('strangekey').style.display = 'none';
-                    strangekey.src ='assets/strangekey.gif';
+                    strangekey.src ='assets/wizard_strangekey.gif';
                     strangekey.style.display = 'block';
                     queryString.set('gp',gp+3);
                     queryString.set('hp',hp);
                     queryString.set('keys',keys+1);
                     //update book data
-                    inventory.src ='inventory.html?'+queryString;
+                    inventory.src ='wizard_inventory.html?'+queryString;
                     //update retreat path in order to retreat from library and keep keys
-                    document.getElementById("wizardPath").href = "wizardPath.html?" + queryString;
+                    document.getElementById("wizardPath").href = "wizard_wizardPath.html?" + queryString;
                     battleText.innerHTML =`You destroy the book, and a strange key drops from it..`
-                    options.innerHTML =`<a href='wizardPath.html?${queryString}'><button>Go back</button></a>`;
+                    options.innerHTML =`<a href='wizard_wizardPath.html?${queryString}'><button>Go back</button></a>`;
                     document.getElementById('wizardButtons').style.display = 'none';
                 }
                 else {
                     hp -= bookAP
                     queryString.set('hp',hp);
-                    inventory.src ='inventory.html?'+queryString;
+                    inventory.src ='wizard_inventory.html?'+queryString;
                     battleText.innerHTML =`You hit for ${ap} damage, it has ${bookHP}hp left.<br> You take ${bookAP} damage.}`
                     if (hp <= 0){
                         battleText.innerHTML =`You Died.`
