@@ -15,25 +15,27 @@
                     background-size: cover;
                     width: 100%;
                     height: 100%;" >
-            <h1> You are in the dark castle's caverns </h1>
-            <h3> You found a riddle upon yourself in order to sneak into de darklord </h3>
-            <h4> You need to complete it, or else you will die </h4>
-            <h3> You can't scape from the riddle </h3>
-
-            <hr>
+            <h2> You are in the dark castle's caverns </h2>
+            <h4 style="margin-top: -35px;" > You found a riddle upon yourself in order to sneak into de darklord </h4>
+            <h4 style="margin-top: -20px;" > You need to complete it, or else you will die </h4>
+            <h3 style="margin-top: -20px;" > You can't scape from the riddle </h3>
 
                 <p> <a id="riddle" > 
                     <button onclick="hearRiddle();"
                             class="smallButton"
                             style="position: absolute;
-                                   left: 50%;
-                                   top: 45%;" > Hear Riddle </button> </a> </p>
+                                   left: 45%;
+                                   bottom: 10%;" > Hear Riddle </button> </a> </p>
             
-            <div>
-                <label>Enter the magic word:</label>
-                <input type="text" id='inputText'>
-                <input type="button" value='Submit' onClick="answer();">
-            </div>
+                <input style="position: absolute;
+                                   left: 44.5%;
+                                   bottom: 40%;"
+                        type="text" id='inputText'>
+
+                <input style="position: absolute;
+                                   left: 49%;
+                                   bottom: 35%;"
+                        type="button" value='Submit' onClick="answer();">
 
             <div id="gameOver" ></div>
             

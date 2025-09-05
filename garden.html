@@ -19,22 +19,22 @@
                    height: 100%;"
             id="bg1" >
             
+            <h2 id="t1" style="z-index: 100000000000;""> You are now at the royal garden. </h2>
+            <h5 id="t2" style="margin-top: -30px; z-index: 100000000000;" > You can see a stone mound which has a massive sword stuck in it. </h5>
+            <h5 id="t3" style="margin-top: -20px; z-index: 100000000000;" > There is also a recomforting bonfire next to a big door, which seems sealed. </h5>
+
+            <h3> What will you do now? </h3>
+
             <div    id = "bg2"
-                    style="background-image: url('assets/gardenLifted.png');
+                    style="background-image: url('assets/gardenLifted.jpeg');
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
                     width: 100%;
                     height: 100%;
-                    z-index: 1000000000;
+                    z-index: 1000;
                     opacity: 0;" >
             </div>
-
-            <h1> You are now at the royal garden. </h1>
-            <h3> You can see a stone mound which has a massive sword stuck in it. </h3>
-            <h3> There is also a recomforting bonfire next to a big door, which seems sealed. </h3>
-
-            <p> What will you do now? </p>
 
             <p> <a id="sword">
                 <button onclick="checkSword();"
@@ -55,7 +55,7 @@
                 <button class="smallButton"
                         style="position: absolute;
                                right: 8%;
-                               bottom: 17%" > Lay by the Campfire </button> </a> </p>
+                               bottom: 19%" > Lay by the Campfire </button> </a> </p>
 
             <p> <a id="exit" href = "enter.html"> 
                 <button class="exitButton"
@@ -79,11 +79,18 @@
             // Used to load the proper background image when needed.
             document.addEventListener("DOMContentLoaded", () => {
                 if(amountItem("greatSword") > 0) {
-                    let backg2 = document.getElementById("bg2");
+                    let backg = document.getElementById("bg1");
+                    let t = document.getElementById("t1");
+                    let tt = document.getElementById("t2");
+                    let ttt = document.getElementById("t3");
                     if(amountItem("doorOpened") > 0) {
-                        backg2.style.backgroundImage = "url('assets/gardenDoorOpen.png')"
+                        backg.style.backgroundImage = "url('assets/gardenDoorOpen.png')"
+                    } else {
+                        backg.style.backgroundImage = "url('assets/gardenLifted.png')"
                     }
-                    backg2.style.opacity = 1;
+                    t.innerHTML="";
+                    tt.innerHTML="";
+                    ttt.innerHTML="";
                 }
             });
 

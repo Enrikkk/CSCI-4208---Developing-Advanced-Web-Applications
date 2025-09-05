@@ -10,25 +10,26 @@
     </head>
 
     <body>
-        <div style="background-image: url('assets/warg2.png');
+        <div style="background-image: url('assets/trap.jpg');
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
                     width: 100%;
                     height: 100%;" >
         
-            <h2> You passed by the castle </h2>
-            <h4> However, you didn't count with the evil that inhabits these lands... </h4>
-            <h4> You end up encountering a herd of wargs, which devore you without further hesitation. </h4>
+            <h1 style="color: white" > You got surrounded </h1>
+            <h3 style="color: white" > It was to be expected that the castle's main entrace would be plagued by troops </h3>
+            <h3 style="color: white" > You fiercely fought them until the death... </h3>
 
+            <button class="bigButton"
+                    style="position: absolute;
+                           left: 40%;
+                           top: 50%;" onclick="gameOver();" > Game Over </button>
+            
             <script src="inventory.js" defer></script>
             <div id="flags" class="flagBox">
                 <script src="inventory.js" defer></script>
             </div>
-            <button class="bigButton"
-                    style="position: absolute;
-                           left: 42%;
-                           top: 55%;" onclick="gameOver();" > Game Over </button>
         </div>
     </body>
 
