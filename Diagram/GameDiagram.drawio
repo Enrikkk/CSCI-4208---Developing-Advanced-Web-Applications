@@ -38,7 +38,7 @@
             <mxPoint x="4" y="-2" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="bWJ_mA49etQfhKQH36Bb-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="W783Z9yKYnY_VlYJ2KmW-13" target="Ndmn0QPPu9krf77uYopM-4">
+        <mxCell id="bWJ_mA49etQfhKQH36Bb-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="W783Z9yKYnY_VlYJ2KmW-13" target="Ndmn0QPPu9krf77uYopM-4" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="-250" y="540" />
@@ -216,7 +216,7 @@
             <mxPoint x="-95" y="380" as="sourcePoint" />
             <Array as="points">
               <mxPoint x="-37" y="375" />
-              <mxPoint x="-37" y="350" />
+              <mxPoint x="-37" y="280" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -230,15 +230,22 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="SFQAF6y4TI38C0EW13ux-7" value="rest.html" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="20" y="320" width="120" height="60" as="geometry" />
+          <mxGeometry x="10" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="L-XmSajz_AOP6nzSEUkn-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=classic;endFill=1;startArrow=none;startFill=0;strokeColor=#9D00FF;" edge="1" parent="1" source="Ndmn0QPPu9krf77uYopM-1" target="L-XmSajz_AOP6nzSEUkn-1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Ndmn0QPPu9krf77uYopM-1" value="sword.html" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="20" y="390" width="120" height="60" as="geometry" />
+          <mxGeometry x="10" y="320" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Ndmn0QPPu9krf77uYopM-3" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.667;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;exitPerimeter=0;strokeColor=#000000;" parent="1" source="W783Z9yKYnY_VlYJ2KmW-30" target="Ndmn0QPPu9krf77uYopM-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-140" y="400" as="sourcePoint" />
             <mxPoint x="-90" y="350" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-20" y="400" />
+              <mxPoint x="-20" y="350" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="Ndmn0QPPu9krf77uYopM-4" value="door.html" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -281,11 +288,17 @@
         <mxCell id="ZjbQgovuja-OV-1wF0qj-5" value="you can only go to the deadTroll page if it has been defeated" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="50" y="703" width="140" height="10" as="geometry" />
         </mxCell>
-        <mxCell id="bWJ_mA49etQfhKQH36Bb-3" value="you can only go to the garden scenario if the door hasn&#39;t been opened" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="bWJ_mA49etQfhKQH36Bb-3" value="you can only go to the garden scenario if the door hasn&#39;t been opened" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="-153" y="460" width="100" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="bWJ_mA49etQfhKQH36Bb-4" value="you can only go to the door scenario if the door has been opened" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="bWJ_mA49etQfhKQH36Bb-4" value="you can only go to the door scenario if the door has been opened" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="-350" y="270" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="L-XmSajz_AOP6nzSEUkn-1" value="liftedSword.html" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="184.25" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="L-XmSajz_AOP6nzSEUkn-5" value="you can only go to lifted sword if you already lifted it" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="152.25" y="270" width="152" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

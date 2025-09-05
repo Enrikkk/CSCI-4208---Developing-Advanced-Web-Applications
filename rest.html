@@ -49,28 +49,32 @@
                 <script src="inventory.js" defer></script>
             </div>
         </div>
-
+    
         <script>
             exit.href += location.search;
 
-            let armor = amountItem("gloryArmor");
-            let maxHealth;
-            if(armor !== 0) {
-                maxHealth = 10;
-            } else {
-                maxHealth = 7;
-            }
-
             async function rest() {
+
+                let maxHealth;
+                if(amountItem("gloryArmor") !== 0) {
+                    maxHealth = 10;
+                } else {
+                    maxHealth = 7;
+                }
+
                 let transition = document.getElementById("night");
-                await sleep(1500);
+                await sleep(500);
                 transition.style.opacity="1";
                 await sleep(4000);
                 transition.style.opacity="0"
-                await sleep(300)
+                await sleep(3200)
                 if(confirm("After resting the whole night you feel completely rejuvenated!")) {
-                    addItem("hp", (maxHealth-amountItem("hp")));
+                    console.log(maxHealth);
+                    console.log("\n"+parseInt(amountItem("hp")));
+                    addItem("hp", maxHealth-parseInt(amountItem("hp")));
                 }
+
+                exit.href = "garden.html" + location.search;
             }
         </script>
 
