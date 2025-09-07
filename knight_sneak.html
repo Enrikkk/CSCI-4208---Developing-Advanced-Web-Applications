@@ -1,0 +1,87 @@
+<html>
+    <!-- This page is very important in the stoy line.
+         It will represent the most visited place inside the castle. -->
+    
+    <head>
+        <title> Triple Adventure </title>
+        <link rel="icon" href="assets/weapons/cimitar.png" />
+        <link rel="stylesheet" href="styles/styles.css" >
+    </head>
+
+    <body>
+        <div style="background-image: url('assets/sneak.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
+            <h2 id="t1" > You are in the dark castle's caverns </h2>
+            <h4 id="t2"  style="margin-top: -35px;" > You found a magic riddle upon yourself in order to sneak into de darklord </h4>
+            <h4 id="t3"  style="margin-top: -20px;" > You need to guess the riddle, or else you will die </h4>
+            <h3 id="t4"  style="margin-top: -20px;" > You can't escape from the riddle </h3>
+
+                <p> <a id="riddle" > 
+                    <button onclick="hearRiddle();"
+                            class="smallButton"
+                            style="position: absolute;
+                                   left: 45%;
+                                   bottom: 10%;" > Hear Riddle </button> </a> </p>
+            
+                <input style="position: absolute;
+                                   left: 44.5%;
+                                   bottom: 40%;"
+                        type="text" id='inputText'>
+
+                <input style="position: absolute;
+                                   left: 49%;
+                                   bottom: 35%;"
+                        type="button" value='Submit' onClick="answer();">
+
+            <div id="gameOver"
+                 style="position: absolute;
+                        left: 41%;
+                        bottom: 32%;" ></div>
+            
+            <p class="inventory-title"> Inventory </p>
+            <div id="inventory" class="inventory"></div>
+            <script src="inventory.js"> </script>
+            <div id="flags" class="flagBox">
+                <script src="inventory.js" defer></script>
+            </div>
+        </div>
+
+        <script>
+
+            function hearRiddle() {
+                confirm("All things it can devour: plants, beasts, flowers and birds");
+                confirm("Gnaws at iron and bites at steel");
+                confirm("Kills kings, ruins cities and can overthrow the highest mountains.");
+                confirm("What is it?");
+            }
+
+            function answer() {
+                if (inputText.value == "time"){
+                    addItem("riddleSolved", 1);
+                    window.location.href = "knight_darklord.html" + location.search;
+                }
+                else {
+                    t = document.getElementById("t1");
+                    tt = document.getElementById("t2");
+                    ttt = document.getElementById("t3");
+                    tttt = document.getElementById("t4");
+                    rdl = document.getElementById("riddle");
+                    confirm("You failed to guess the riddle, now you are doomed to stay in the dark castle's caverns until your death");
+                    t.innerHTML = "";
+                    tt.innerHTML = "";
+                    ttt.innerHTML = "";
+                    tttt.innerHTML = "";
+                    rdl.innerHTML = "";
+                    document.getElementById("gameOver").innerHTML = 
+                        "<a href='index.html'> <button class=\"bigButton\" > Game Over </button></a>";
+                }
+            }
+        </script>
+
+    </body>
+
+</html>

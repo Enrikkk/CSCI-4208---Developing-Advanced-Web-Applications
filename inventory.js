@@ -70,7 +70,6 @@ function renderInventory() {
     hp: "assets/hp.png",
     firstSword: "assets/weapons/firstSword.avif",
     greatSword: "assets/weapons/greatSword.png",
-    gloryArmor: "assets/gloryArmor.webp",
     medallion: "assets/medallion.png",
     strength: "assets/strength.png"
   };
