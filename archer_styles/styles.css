@@ -1,0 +1,74 @@
+body{  
+  font-family: sans-serif; 
+}
+
+#inventory {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid #2c5120;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #5d975a, #5d975a);
+    box-shadow: 0 4px 15px rgba(63, 63, 63, 0.7);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.mediumButton {
+  background-color: darkgreen;
+  color: greenyellow;
+  padding: 25px 35px;
+  font-size: 22px;
+  border-radius: 15%;
+  cursor: pointer;
+  transition: 1s ease;
+}
+
+.smallButton {
+  background-color: darkgreen;
+  color: greenyellow;
+  padding: 15px 20px;
+  font-size: 18px;
+  border-radius: 30%;
+  cursor: pointer;
+  transition: 1s ease;
+}
+
+.centered {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.right {
+  position: absolute;
+  float: right;
+  right: 4%;
+  top: 60%;
+}
+
+.center {
+    text-align: center;
+}
+
+.btn {
+  position: absolute; 
+  top: 75%; 
+  left: 45%;
+}
+
+.you-died {
+  color: #d12100; 
+  font-size: 8rem; 
+  font-weight: bold;
+  text-align: center;
+  line-height: 1; 
+    text-shadow: 
+      0 0 10px #ff3f00, 
+      0 0 20px #ff3f00, 
+      1px 1px 0 #4d0000; 
+  letter-spacing: 0.2rem; 
+  text-transform: uppercase; 
+}
