@@ -1,0 +1,60 @@
+<html>
+    <!-- This page will be key in the development of out history, since here an 
+         incredibly powerful weapon awaits.
+         Once unlocked, true power will invade out knight. -->
+    
+    <head>
+        <title> Triple Adventure </title>
+        <link rel="icon" href="assets/weapons/cimitar.png" />
+        <link rel="stylesheet" href="styles/styles.css" >
+    </head>
+
+    <body>
+        <div        id="background"
+                    style="background-image: url('assets/gardenOpen.webp');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
+            <h1> You are now at the royal garden. </h1>
+            <p> What will you do now? </p>
+
+            <p> <a id="rest" href = "knight_rest.html"> 
+                <button onclick="openDoor();"
+                        class="smallButton"
+                        style="position: absolute;
+                               right: 20%;
+                               bottom: 30%" > Lay by the Campfire </button> </a> </p>
+            
+            <p> <a id="door" href="knight_darkValley.html">
+                <button id="doorBtn"
+                        class="smallButton"
+                        style="position: absolute;
+                               right: 35%;
+                               top: 25%" disabled> Pass Through </button> </a> </p>
+
+            <p> <a id="exit" href = "knight_enter.html"> 
+                <button class="exitButton"
+                        style="position: absolute;
+                               left: 38%;
+                               bottom: 10%;" > Exit </button> </a> </p>
+
+            <p class="inventory-title" > Inventory </p>
+            <div id="inventory" class="inventory">
+                <script src="inventory.js" defer></script>
+            </div>
+            <div id="flags" class="flagBox">
+                <script src="inventory.js" defer></script>
+            </div>
+        </div>
+
+        <script>
+            rest.href += location.search;
+            door.href += location.search;
+            exit.href += location.search;
+        </script>
+
+    </body>
+
+</html>

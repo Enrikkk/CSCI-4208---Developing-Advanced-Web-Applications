@@ -1,0 +1,56 @@
+<html>
+    <!-- This page is very important in the stoy line.
+         It will represent the most visited place inside the castle. -->
+    
+    <head>
+        <title> Triple Adventure </title>
+        <link rel="icon" href="assets/weapons/cimitar.png" />
+        <link rel="stylesheet" href="styles/styles.css" >
+    </head>
+
+    <body>
+        <div style="background-image: url('assets/darkCastle.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
+            <h2> You are in the darklord's castle main entrace </h2>
+            <h4 style="margin-top: -35px;" > You are thinking about whether entering directly or sneaking into the castle. </h3>
+            <h3 style="margin-top: -20px;" > What will you do now? </h4>
+
+                <p> <a id="darklord" href = "knight_trap.html"> 
+                    <button class="smallButton"
+                            style="position: absolute;
+                                   left: 35%;
+                                   top: 45%;" > Enter </button> </a> </p>
+                
+                <p> <a id="sneak" href = "knight_sneak.html"> 
+                    <button class="smallButton"
+                            style="position: absolute;
+                                   right: 35%;
+                                   top: 45%;" > Sneak </button> </a> </p>
+
+                <p> <a id="exit" href = "knight_darkValley.html">  
+                    <button class="exitButton"
+                            style="position: absolute;
+                                   left: 46%;
+                                   bottom: 6%;" > Exit </button> </a> </p>
+            
+            <p class="inventory-title"> Inventory </p>
+            <div id="inventory" class="inventory"></div>
+            <script src="inventory.js"> </script>
+            <div id="flags" class="flagBox">
+                <script src="inventory.js" defer></script>
+            </div>
+        </div>
+
+        <script>
+            darklord.href += location.search;
+            sneak.href += location.search;
+            exit.href += location.search;
+        </script>
+
+    </body>
+
+</html>
