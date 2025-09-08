@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <title> Triple Adventure</title>
+        <link rel="stylesheet" href="archer_styles/styles.css">
+    </head>
+
+    <body>
+        <div style="background-image: url('archer_assets/battle.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >  
+            
+            <p style="color: whitesmoke; text-align: center; line-height: 5; text-shadow: 20px; font-size: xx-large; font-weight: bold;">
+                Player HP: <span id="playerHP">hp</span> | Enemy HP: <span id="enemyHP">20</span></p>
+            <p id="battleMessage" style="color: whitesmoke; text-align: center; line-height: 6; text-shadow: 20px; font-size: xx-large; font-weight: bold;">
+                Choose your action!</p>
+            <button class="smallButton" style="position: absolute; top: 50%; left: 43%;"
+                onclick="attack()">Attack</button>
+            <button class="smallButton " style="position: absolute; top: 50%; left: 57%;"
+                onclick="dodge()">Dodge</button>
+            <button class="mediumButton centered " onclick="claimReward()" id="rewardBtn" style="display:none;">Claim Reward</button>
+            <button class="mediumButton centered " onclick="returnToStart()" id="defeatBtn" style="display:none;">Return to Beginning</button>
+        </div>
+    </body>
+
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+        let hp = urlParams.get('hp') || 10;
+        let ad = urlParams.get('ad') || 5;
+        let keys = urlParams.get('keys') || 0;
+        
+        let playerHP = parseInt(hp);
+        let enemyHP = 20;
+        let dodgeNext = false;
+
+        window.onload = function() {
+            document.getElementById('playerHP').textContent = playerHP;
+            let inventoryFrame = document.getElementById('inventory');
+            if (inventoryFrame) {
+                inventoryFrame.src = `archer_inventory.html?hp=${hp}&ad=${ad}&keys=${keys}`;
+            }
+        }
+
+        function attack() {
+            let damage = 5;
+            enemyHP -= damage;
+            document.getElementById('enemyHP').textContent = enemyHP;
+            document.getElementById('battleMessage').textContent = `You attack for ${damage} damage!`;
+            
+            if (enemyHP <= 0) {
+                document.getElementById('battleMessage').textContent = 'Victory! You defeated the beast!';
+                document.getElementById('rewardBtn').style.display = 'inline';
+                return;
+            }
+            
+            setTimeout(enemyAttack, 1000);
+        }
+
+        function dodge() {
+            dodgeNext = true;
+            document.getElementById('battleMessage').textContent = 'You prepare to dodge!';
+            setTimeout(enemyAttack, 1000);
+        }
+
+        function enemyAttack() {
+            if (dodgeNext) {
+                document.getElementById('battleMessage').textContent = 'Enemy attacks but you dodge!';
+                dodgeNext = false;
+            } else {
+                let damage = 4; 
+                playerHP -= damage;
+                document.getElementById('playerHP').textContent = playerHP > 0 ? playerHP : 0;
+                document.getElementById('battleMessage').textContent = `Enemy attacks for ${damage} damage!`;
+                
+                if (playerHP <= 0) {
+                    document.getElementById('battleMessage').textContent = 'You have been defeated!';
+                    document.getElementById('defeatBtn').style.display = 'inline';
+                }
+            }
+        }
+        function claimReward() {
+            keys = parseInt(keys) + 1;
+            window.location.href = `archerKey.html?hp=${playerHP}&ad=${ad}&keys=${keys}`;
+        }
+
+        function returnToStart() {
+            window.location.href = 'archer.html';
+        }
+    </script>
+</html>
