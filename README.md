@@ -6,7 +6,7 @@
 - **Enrique Hernández** - [Enrikkk]
 - **Kevin Galvez** - [kfgalvez]
 
-[![Play Game](https://img.shields.io/badge/Play-Game-brightgreen)](https://enrikkk.github.io/Adv_Web_Apps_Project1_HTML-CSS-Game/)
+[![Play Game](https://img.shields.io/badge/Play-Game-brightgreen?style=for-the-badge&logo=unity&logoColor=white)](https://enrikkk.github.io/Adv_Web_Apps_Project1_HTML-CSS-Game/)
 
 
 ## 📖 Overview
