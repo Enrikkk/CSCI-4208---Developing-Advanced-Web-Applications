@@ -6,6 +6,8 @@
 - **Enrique Hernández** - [Enrikkk]
 - **Kevin Galvez** - [kfgalvez]
 
+[![Play Game](https://img.shields.io/badge/Play-Game-brightgreen)](https://enrikkk.github.io/Adv_Web_Apps_Project1_HTML-CSS-Game/)
+
 
 ## 📖 Overview
 
@@ -20,6 +22,18 @@
 - 🎨 **Rich Visual Experience** - Dynamic backgrounds and animations
 - ❤️ **Health & Item Management** - Strategic resource management
 - 🏆 **Multiple Endings** - Replayability with different outcomes
+
+---
+
+## ⚙️ Development
+ - The game has 3 different paths to follow, each developed by a different member of the team.
+     - Knight Path - Enrikkk
+     - Archer Path - chew-Lo
+     - Wizard Path - kfgalvez
+
+ - The main set of files (code, assets, ...) is in the "html_files" folder. Additional to this, you can find additional folders, in which you can find
+   the corresponding individual paths of the game.
+ - The game can be fully played through the execution of de index.html file (or by pressing the "Play Game" button at the beginning of this file.
 
 ---
 
