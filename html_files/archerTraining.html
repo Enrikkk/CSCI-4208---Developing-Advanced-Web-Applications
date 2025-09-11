@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title> Triple Adventure</title>
+        <link rel="stylesheet" href="archer_styles/styles.css">
+    </head>
+
+    <body>
+        <div style="background-image: url('archer_assets/training.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >   
+            <h1 style="color: whitesmoke; text-align: center; line-height: 13; text-shadow: 20px"> 
+                Let's see if you're ready for this Journey.
+                Try to hit a bullseye in the target.
+            </h1>
+            <button class="mediumButton centered"
+                    style="top: 90%" 
+                    onclick="redirectToRandomTarget()"> Shoot the arrow </button>
+        </div>
+
+        <script>
+            function redirectToRandomTarget() {
+                var targets = [
+                    "target1.html",
+                    "target2.html",
+                    "target3.html"
+                ];
+                
+                var randomIndex = Math.floor(Math.random() * targets.length);
+                var selectedTarget = targets[randomIndex];
+                
+                window.location.href = selectedTarget;
+            }
+        </script>
+      <iframe src='archer_inventory.html' id='inventory' height='150' width='150'></iframe>
+    </body>
+</html>

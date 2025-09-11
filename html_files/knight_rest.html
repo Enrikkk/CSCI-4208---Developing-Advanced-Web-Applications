@@ -1,0 +1,90 @@
+<html>
+    <!-- This page will allow the knight to rest, recovering all of this healt point. -->
+
+    <head>
+        <title> Triple Adventure </title>
+        <link rel="icon" href="knight_assets/weapons/cimitar.png" />
+        <link rel="stylesheet" href="knight_styles/styles.css" >
+    </head>
+
+    <body>
+        <div style="background-image: url('knight_assets/rest.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
+
+            <!-- We will use this div container to make the animation for resting. -->
+            <div    id = "night"
+                    style="background-image: url('knight_assets/night.avif');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 10000000000;
+                    opacity: 0;
+                    transition: opacity 3s ease-in-out" >
+            </div>
+            
+            <p> <a id="rest"> 
+                <button id="bt1"
+                        onclick="rest();"
+                        class="smallButton"
+                        style="position: absolute;
+                               right: 17%;
+                               bottom: 21%;
+                               opacity: 1;
+                               transition: opacity 1.5s ease-in-out;" > Rest through the Night </button> </a> </p>
+
+            <p> <a id="exit" href = "knight_garden.html"> 
+                <button id="bt2"
+                        class="exitButton"
+                        style="position: absolute;
+                               left: 50%;
+                               bottom: 10%;
+                               opacity: 1;
+                               transition: opacity 1.5s ease-in-out;" > Exit </button> </a> </p>
+
+            <p class="inventory-title" > Inventory </p>
+            <div id="inventory" class="inventory">
+                <script src="inventory.js" defer></script>
+            </div>
+            <div id="flags" class="flagBox">
+                <script src="inventory.js" defer></script>
+            </div>
+        </div>
+    
+        <script>
+            exit.href += location.search;
+
+            async function rest() {
+
+                let maxHealth = 7;
+
+                let transition = document.getElementById("night");
+                let b1 = document.getElementById("bt1");
+                let b2 = document.getElementById("bt2");
+
+                b1.style.opacity="0";
+                b2.style.opacity="0";
+                await sleep(500);
+                transition.style.opacity="1";
+                await sleep(4000);
+                transition.style.opacity="0"
+                await sleep(3200)
+                if(confirm("After resting the whole night you feel completely rejuvenated!")) {
+                    addItem("hp", maxHealth-parseInt(amountItem("hp")));
+                }
+                b1.style.opacity="1";
+                b2.style.opacity="1";
+
+                exit.href = "knight_garden.html" + location.search;
+            }
+        </script>
+
+    </body>
+
+
+</html>

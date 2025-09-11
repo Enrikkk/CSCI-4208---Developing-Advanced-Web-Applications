@@ -1,0 +1,324 @@
+<html>
+
+    <head>
+        <title> Triple Adventure </title>
+        <link rel="icon" href="knight_assets/weapons/cimitar.png" />
+        <link rel="stylesheet" href="knight_styles/styles.css" >
+    </head>
+
+    <body>
+        <div style="background-image: url('knight_assets/trollFight.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
+        
+            <div id="trollHealthS" class="trollHealthSlot" >
+                <div id="trollHealthB" class="trollHealthBar" > </div>
+            </div>
+
+            <p id="trollHealthT"
+               style="position: absolute;
+                      top: 2%;
+                      left: 47%;
+                      font-size: 35px;" > 10 </p>
+
+            <h4 id="t1" style="margin-top: -1;" > You are fighting the troll! </h4>
+
+                <div id="fightSlot" class="fightSlot" >
+                    <p class="fight-text" > What will you do now? </p>
+                    
+                    <div class="fight-buttons-display" >
+                        <button onclick="attackTroll();"
+                            class="fight-button" > Attack 
+                        </button>
+
+                        <button onclick="dodgeTroll();"
+                                class="fight-button" > Dodge 
+                        </button>
+
+                        <button onclick="danceTroll();"
+                            class="fight-button" > Dance 
+                        </button>
+
+                        <button onclick="fleeTroll();"
+                                class="fight-button" > Flee 
+                        </button>
+                    </div>
+                </div>
+
+                <div id="gameOver"
+                 style="position: absolute;
+                        left: 39%;
+                        bottom: 43%;" ></div>
+
+            <p class="inventory-title" > Inventory </p>
+            <div id="inventory" class="inventory">
+                <script src="inventory.js" defer></script>
+            </div>
+            <div id="flags" class="flagBox">
+                <script src="inventory.js" defer></script>
+            </div>
+        </div>
+
+        <script>
+            // This will be the script used to handle the logic of fights.
+
+            // Troll Stats
+            var trollInitialHP = 10;
+            var trollHP = trollInitialHP;
+            var trollAPNormal = 2;
+            var trollAPAngry = 3;
+            var trollAPCrit = 4;
+            var trollAngry = false;
+
+            // Knight Stats
+            let inventory = new URLSearchParams(location.search);
+            var knightAP = +inventory.get("firstSword");
+            var knightAPCrit = 4;
+            var knightAPDance = 5;
+            var dodgeChance = 0.6;
+            var danceChance = 0.4;
+            var fleeChance = 0.3;
+
+            function updateHealthBar() {
+                let percentage = trollHP*100/trollInitialHP;
+                document.getElementById("trollHealthB").style.width = percentage + "%";
+                document.getElementById("trollHealthT").textContent = trollHP;
+            }
+
+            function attackTroll() {
+                trollHP = Math.max(0, trollHP - knightAP);
+                updateHealthBar();
+
+                confirm("You attacked the troll for " + knightAP + " damage!");
+                if(trollHP <= 0) {
+                    confirm("The troll has been defeated, you saved the king!");
+                    addItem("trollDefeated", 1);
+                    if(confirm("The king thanks you for saving him, therefore he gives you a sign of his gratitude, the pride's medallion")) {
+                        addItem("medallion", 1);
+                    }
+                    window.location.href = "knight_deadTroll.html" + location.search;
+                } else {
+                    if(trollHP <= 5 && !trollAngry) {
+                        trollAngry = true;
+                        confirm("The troll is now angry, he may deal more damage, be careful!");
+                    }
+                    if(trollAngry) {
+                        removeItem("hp", trollAPAngry);
+                    } else {
+                        removeItem("hp", trollAPNormal);
+                    }
+
+                    confirm("The troll attacked you for " + (trollAngry ? trollAPAngry : trollAPNormal) + " damage!");
+
+                    if(amountItem("hp") === 0) {
+                        confirm("You have been defeated by the troll!\n");
+                        confirm("This looks like a goodbye.\n");
+                        if(confirm("See you soon, honorable knight...")) {
+                            document.getElementById("gameOver").innerHTML = 
+                                "<a href='../index.html'> <button class=\"bigButton\" > Game Over </button></a>";
+                            
+                            let ht = document.getElementById("trollHealthT");
+                            let hs = document.getElementById("trollHealthS");
+                            let hb = document.getElementById("trollHealthB");
+                            let t = document.getElementById("t1");
+                            let fs = document.getElementById("fightSlot");
+
+                            ht.innerHTML="";
+                            ht.style.opacity=0;
+
+                            hb.innerHTML="";
+                            hb.style.opacity=0;
+
+                            hs.innerHTML="";
+                            hs.style.opacity=0;
+                            
+                            t.innerHTML="";
+                            t.style.opacity=0;
+
+                            fs.innerHTML="";
+                            fs.style.opacity=0;
+                        }
+                    }
+                 }
+            }
+                
+
+            function dodgeTroll() {
+                var probability = Math.random();
+                if(probability < dodgeChance) {
+                    confirm("You dodged the troll!");
+                    if(confirm("He is now stunned, it is a great opportunity to deal some damage!")) {
+                        
+                        trollHP = Math.max(0, trollHP - knightAPCrit);
+                        updateHealthBar();
+
+                        if(trollHP <= 0) {
+                            confirm("The troll has been defeated, you saved the king!");
+                            addItem("trollDefeated", 1);
+                            if(confirm("The king thanks you for saving him, therefore he gives you a sign of his gratitude, the pride's medallion")) {
+                                addItem("medallion", 1);
+                            } else {
+                                if(trollHP <= 5 && !trollAngry) {
+                                trollAngry = true;
+                                confirm("The troll is now angry, he may deal more damage, be careful!");
+                            }
+                            }
+                            window.location.href = "knight_deadTroll.html" + location.search;
+                        }
+                    }
+                } else {
+                    confirm("You tripped over while dodging the troll.");
+                    confirm("Therefore, he was able to deal great damage!")
+                    if(confirm("The troll attacked you for " + trollAPCrit + " damage!")) {
+                        removeItem("hp", trollAPCrit);
+                    }
+
+                    if(amountItem("hp") === 0) {
+                        confirm("You have been defeated by the troll!\n");
+                        confirm("This looks like a goodbye.\n");
+                        if(confirm("See you soon, honorable knight...")) {
+                            document.getElementById("gameOver").innerHTML = 
+                                "<a href='../index.html'> <button class=\"bigButton\" > Game Over </button></a>";
+                        
+                            let ht = document.getElementById("trollHealthT");
+                            let hs = document.getElementById("trollHealthS");
+                            let hb = document.getElementById("trollHealthB");
+                            let t = document.getElementById("t1");
+                            let fs = document.getElementById("fightSlot");
+
+                            ht.innerHTML="";
+                            ht.style.opacity=0;
+
+                            hb.innerHTML="";
+                            hb.style.opacity=0;
+
+                            hs.innerHTML="";
+                            hs.style.opacity=0;
+                            
+                            t.innerHTML="";
+                            t.style.opacity=0;
+
+                            fs.innerHTML="";
+                            fs.style.opacity=0;
+                        }
+                    }
+
+                }
+            }
+
+            function danceTroll() {
+                var probability = Math.random();
+                if(probability < danceChance) {
+                    confirm("You started dancing salsa, which hypnotized the troll!");
+                    if(confirm("It's your oppourtunity to do serious damage!")) {
+                        trollHP = Math.max(0, trollHP - knightAPDance);
+                        updateHealthBar();
+                    }
+
+                    if(trollHP <= 0) {
+                            confirm("The troll has been defeated, you saved the king (with your  dancing skills)!");
+                            addItem("trollDefeated", 1);
+                            if(confirm("The king thanks you for saving him, therefore he gives you a sign of his gratitude, the pride's medallion")) {
+                                addItem("medallion", 1);
+                            }
+                            window.location.href = "knight_deadTroll.html" + location.search;
+                    } else {
+                        if(trollHP <= 5 && !trollAngry) {
+                            trollAngry = true;
+                        confirm("The troll is now angry, he may deal more damage, be careful!");
+                    }
+                    }
+                } else {
+                    confirm("Despite dancing the gretest salsa ever, the troll didn't care about it...");
+
+                    if(trollAngry) {
+                        if(confirm("The troll attacked you for " + (trollAPAngry+1)+ " damage!")) {
+                            removeItem("hp", trollAPAngry+1);
+                        }
+                    } else {
+                        if(confirm("The troll attacked you for " + (trollAPNormal+1) + " damage!")) {
+                            removeItem("hp", trollAPNormal+1);
+                        }
+                    }
+
+                    if(amountItem("hp") === 0) {
+                        confirm("You have been defeated by the troll!\n");
+                        confirm("This looks like a goodbye.\n");
+                        if(confirm("See you soon, honorable (and dancer) knight...")) {
+                            document.getElementById("gameOver").innerHTML = 
+                                "<a href='../index.html'> <button class=\"bigButton\" > Game Over </button></a>";
+                        
+                            let ht = document.getElementById("trollHealthT");
+                            let hs = document.getElementById("trollHealthS");
+                            let hb = document.getElementById("trollHealthB");
+                            let t = document.getElementById("t1");
+                            let fs = document.getElementById("fightSlot");
+
+                            ht.innerHTML="";
+                            ht.style.opacity=0;
+
+                            hb.innerHTML="";
+                            hb.style.opacity=0;
+
+                            hs.innerHTML="";
+                            hs.style.opacity=0;
+                            
+                            t.innerHTML="";
+                            t.style.opacity=0;
+
+                            fs.innerHTML="";
+                            fs.style.opacity=0;
+                        }
+                    }
+                }
+            }
+
+            function fleeTroll() {
+                var probability = Math.random();
+                if(probability < fleeChance) {
+                    confirm("While trying to flee, the troll blocked your way, being able to hit you!")
+                    if(confirm("The troll attacked you for " + trollAPCrit + " damage!")) {
+                        removeItem("hp", trollAPCrit);
+                    }
+
+                    if(amountItem("hp") === 0) {
+                        confirm("You have been defeated by the troll!\n");
+                        confirm("This looks like a goodbye.\n");
+                        if(confirm("See you soon, honorable knight...")) {
+                            document.getElementById("gameOver").innerHTML = 
+                                "<a href='../index.html'> <button class=\"bigButton\" > Game Over </button></a>";
+                        
+                            let ht = document.getElementById("trollHealthT");
+                            let hs = document.getElementById("trollHealthS");
+                            let hb = document.getElementById("trollHealthB");
+                            let t = document.getElementById("t1");
+                            let fs = document.getElementById("fightSlot");
+
+                            ht.innerHTML="";
+                            ht.style.opacity=0;
+
+                            hb.innerHTML="";
+                            hb.style.opacity=0;
+
+                            hs.innerHTML="";
+                            hs.style.opacity=0;
+                            
+                            t.innerHTML="";
+                            t.style.opacity=0;
+
+                            fs.innerHTML="";
+                            fs.style.opacity=0;
+                        }
+                    }
+                } else {
+                    window.location.href = "knight_enter.html" + location.search;
+                }
+            }
+        </script>
+
+    </body>
+
+</html>

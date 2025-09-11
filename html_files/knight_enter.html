@@ -1,0 +1,75 @@
+<html>
+    <!-- This page is very important in the stoy line.
+         It will represent the most visited place inside the castle. -->
+    
+    <head>
+        <title> Triple Adventure </title>
+        <link rel="icon" href="knight_assets/weapons/cimitar.png" />
+        <link rel="stylesheet" href="knight_styles/styles.css" >
+    </head>
+
+    <body>
+        <div style="background-image: url('knight_assets/inCastle.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >
+            <h2> You are in the castle's royal courtyard. </h2>
+            <h4 style="margin-top: -35;" > Now, you need to figure out a way to prepare yourself to fight the darklord. </h4>
+            <h3 style="margin-top: -35;" > Where will you go now? </h3>
+
+                <p> <a id="academy" href = "knight_academy.html"> 
+                    <button class="smallButton"
+                            style="position: absolute;
+                                   left: 3%;
+                                   top: 45%;" > Training Academy </button> </a> </p>
+                
+                <p> <a id="garden" href = "knight_garden.html">  
+                    <button class="smallButton"
+                            style="position: absolute;
+                                   right: 14%;
+                                   bottom: 25%;" > Royal Garden </button> </a> </p>
+                
+                    <p> <a id="king" > 
+                    <button class="smallButton"
+                            style="position:absolute;
+                                   left: 45%;
+                                   bottom: 50%;" > See the king </button> </a> </p>
+
+                <p> <a id="exit" href = "knight_entrance.html">  
+                    <button class="exitButton"
+                            style="position: absolute;
+                                   left: 38%;
+                                   bottom: 12%;" > Exit </button> </a> </p>
+            
+            <p class="inventory-title"> Inventory </p>
+            <div id="inventory" class="inventory"></div>
+            <script src="inventory.js"> </script>
+            <div id="flags" class="flagBox">
+                <script src="inventory.js" defer></script>
+            </div>
+        </div>
+
+        <script>
+            academy.href += location.search;
+            garden.href += location.search;
+            exit.href += location.search;
+
+            
+            // Now, we have to check if the troll has been defeated in order to see 
+            // which page will be loaded for the "see king" button.
+            document.getElementById("king").addEventListener("click", () => {
+                var defeated = amountItem("trollDefeated");
+                if(defeated === 0) {
+                    king.href = "knight_king.html" + location.search;
+                } else {
+                    king.href = "knight_deadTroll.html" + location.search;
+                }
+            });
+
+        </script>
+
+    </body>
+
+</html>

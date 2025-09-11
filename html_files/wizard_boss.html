@@ -2,6 +2,7 @@
     <head>
         <title> RPG Adventure game </title>
         <link rel="icon" href="assets/weapons/cimitar.png" />
+        <link rel="stylesheet" href="styles/styles.css">
         <link rel="stylesheet" href="wizard-styles/wizard-styles.css">
     </head>
     <body>
@@ -83,7 +84,7 @@
                 battleText.innerHTML =`You hit for ${ap} damage, it has ${dragonHP}hp left.<br> You take ${dragonAP} damage.`
                 if (hp <= 0){
                     battleText.innerHTML =`You Died.`
-                    options.innerHTML =`<a href= 'index.html'><button>Game Over</button></a>`
+                    options.innerHTML =`<a href= '../index.html'><button>Game Over</button></a>`
                 }
             }
         </script>

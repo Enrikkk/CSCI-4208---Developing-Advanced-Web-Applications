@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title> Triple Adventure</title>
+        <link rel="stylesheet" href="archer_styles/styles.css">
+    </head>   
+    <body>
+        <h1> </h1>
+        <div style="background-image: url('archer_assets/key.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >  
+        <h1 style="color: white; text-align: center; line-height: 3"> 
+            Well done you've got the key to the final boss. press back to menu to proceed </h1>
+        </div>
+        <a id='index' href="../index.html"> <button class="mediumButton centered"> 
+                        back to menu </button></a>
+    </body>
+        <iframe src='archer_inventory.html' id='inventory' height='150' width='150' style="top:50%; left: 20%"></iframe>
+    <script>
+
+        var urlParams = new URLSearchParams(window.location.search);
+        let hp = urlParams.get('hp') || 10;
+        let ad = urlParams.get('ad') || 5;
+        let keys = urlParams.get('keys') || 0;
+
+    window.onload = function() {
+        let inventoryFrame = document.getElementById('inventory');
+        if (inventoryFrame) {
+            inventoryFrame.src = `archer_inventory.html?hp=${hp}&ad=${ad}&keys=${keys}`;
+        }
+    }
+
+    function goToPage(pageName) {
+        window.location.href = `${pageName}?hp=${hp}&ad=${ad}&keys=${keys}`;
+}
+</script>

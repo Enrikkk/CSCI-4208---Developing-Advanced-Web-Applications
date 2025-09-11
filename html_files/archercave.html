@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title> Triple Adventure</title>
+        <link rel="stylesheet" href="archer_styles/styles.css">
+    </head>
+
+    <body>
+        <div style="background-image: url('archer_assets/cave.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >  
+                    
+        <p>
+                    <button class="mediumButton"
+                    style="position: absolute;left: 35%; ; top: 20%;" 
+                    onclick="goToPage('archerbattle.html')"> Enter the cave </button>
+            </p>
+        
+      <iframe src='archer_inventory.html' id='inventory' height='150' width='150'></iframe>
+            <script>
+        var urlParams = new URLSearchParams(window.location.search);
+        let hp = urlParams.get('hp') || 10;
+        let ad = urlParams.get('ad') || 5;
+        let keys = urlParams.get('keys') || 0;
+
+        window.onload = function() {
+            let inventoryFrame = document.getElementById('inventory');
+            if (inventoryFrame) {
+                inventoryFrame.src = `archer_inventory.html?hp=${hp}&ad=${ad}&keys=${keys}`;
+            }
+        }
+
+        function goToPage(pageName) {
+            window.location.href = `${pageName}?hp=${hp}&ad=${ad}&keys=${keys}`;
+        }
+        </script>
+    </body>

@@ -1,0 +1,43 @@
+<html>
+
+    <head>
+        <title> Triple Adventure </title>
+        <link rel="stylesheet" href="archer_styles/styles.css">
+    </head>
+
+    <body>
+
+        <iframe src='archer_inventory.html' id='inventory' height='150' width='150'></iframe>
+
+        <div style="background-image: url('archer_assets/deer.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;" >   
+        <p>
+            <button class="mediumButton centered" onclick="shootDeer()"> shoot the deer </button>
+            </p>
+    </body>
+    
+    <script>
+        let currentHP = 10;
+        let currentAD = 5;
+        let currentKeys = 0;
+
+        function shootDeer() {
+            currentHP += 5;
+            currentAD += 3;
+    
+            let inventoryFrame = document.getElementById('inventory');
+            inventoryFrame.src = `archer_inventory.html?hp=${currentHP}&ad=${currentAD}&keys=${currentKeys}`;
+    
+            alert(`Deer killed! HP +5, AD +3\nNew stats: HP=${currentHP}, AD=${currentAD}`);
+    
+            setTimeout(function() {
+                window.location.href = `archer_rest.html?hp=${currentHP}&ad=${currentAD}&keys=${currentKeys}`;
+            }, 1500);
+}
+    </script>
+    
+</html>
