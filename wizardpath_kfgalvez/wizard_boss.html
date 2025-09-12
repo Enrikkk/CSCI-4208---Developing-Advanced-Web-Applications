@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> RPG Adventure game </title>
+        <title>Triple Adventure</title>
         <link rel="icon" href="assets/weapons/cimitar.png" />
         <link rel="stylesheet" href="wizard-styles/wizard-styles.css">
     </head>
@@ -26,17 +26,13 @@
         <button id='Electric blast' onclick='attack()'> Electric Blast </button>
 
         <button id='CursedBook' onclick='cursedBook()'> Use Cursed Book </button>
-
-        <div id="doorButtons" style="display:none;">
-        <button onclick="location.href='wizard_menu.html?' + queryString">Return to Menu</button>
         </div>
 
-        <a id='courtyard' href='wizard_courtyard.html'>
-            <button> Retreat </button>
-        </a>
+        <div id="homeButton" style="display:none;">
+        <button onclick="location.href='../index.html?' + queryString">Return to Menu</button>
+        </div>
         <hr>
         </div>
-        
         <hr>
         <iframe src='wizard_inventory.html' id=inventory height=100 width=200></iframe>
         <script>
@@ -57,10 +53,18 @@
                 document.getElementById('magicStone').style.display = 'block'; //show the stone
                 options.style.display = "none"; 
                 battleText.innerHTML = "The dragon has already been defeated. The mana stone awaits you.";
+                document.getElementById('homeButton').style.display = 'inline-block';
+
             }
         
             //create function that allows dragon to die
             function cursedBook(){
+                var hasBook = queryString.get('book') == 'true'; //check if player has book
+
+                if (!hasBook){
+                    battleText.innerHTML = "You don't have the cursed book! Good luck...";
+                    return; //stop function here
+                }
                 dragonHP -= dragonHP; //insta kill the dragon with the cursed book
                 queryString.set('dragonDead', 'true'); ///prevents dragon from respawing
                 inventory.src ='wizard_inventory.html?'+queryString;
@@ -83,7 +87,7 @@
                 battleText.innerHTML =`You hit for ${ap} damage, it has ${dragonHP}hp left.<br> You take ${dragonAP} damage.`
                 if (hp <= 0){
                     battleText.innerHTML =`You Died.`
-                    options.innerHTML =`<a href= 'index.html'><button>Game Over</button></a>`
+                    options.innerHTML =`<a href= '../index.html'><button>Game Over</button></a>`
                 }
             }
         </script>
