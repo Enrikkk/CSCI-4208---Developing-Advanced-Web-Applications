@@ -4,7 +4,7 @@
 # 👤👤👤 Authors
 - **Kyle Lofredo** - [chew-Lo]
 - **Enrique Hernández** - [Enrikkk]
-- **Kevin Galvez** - [kfgalvez]
+- **Kevin Galvez** - [kfgalvez][KevinG504]
 
 [![Play Game](https://img.shields.io/badge/Play-Game-brightgreen?style=for-the-badge&logo=unity&logoColor=white)](https://enrikkk.github.io/Adv_Web_Apps_Project1_HTML-CSS-Game/)
 
